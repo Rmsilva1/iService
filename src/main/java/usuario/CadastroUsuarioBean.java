@@ -1,4 +1,4 @@
-package tecnico;
+package usuario;
 
 import java.io.Serializable;
 
@@ -7,13 +7,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+
 @ViewScoped
 @ManagedBean
-@Named("cadastroTecnicoBean")
-public class CadastroTecnicoBean implements Serializable{
+@Named("cadastroUsuarioBean")
+public class CadastroUsuarioBean implements Serializable{
 
-	private static final long serialVersionUID = 5575777153302473377L;
-	private Boolean tecnico = true;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3442147548000808550L;
+	private Boolean isTecnico = true;
 	private String cpf;
 	private String email;
 	private String senha;
@@ -23,15 +27,14 @@ public class CadastroTecnicoBean implements Serializable{
 	private String cidade;
 
 	@PostConstruct
-	public void init() {
+	public void init() { }
+	
+	public Boolean getIsTecnico() {
+		return isTecnico;
 	}
 
-	public Boolean isTecnico() {
-		return this.tecnico;
-	}
-	
 	public void setIsTecnico(Boolean isTecnico) {
-		this.tecnico = isTecnico;
+		this.isTecnico = isTecnico;
 	}
 
 	public String getCpf() {

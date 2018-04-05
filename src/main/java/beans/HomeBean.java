@@ -22,17 +22,13 @@ import javax.inject.Named;
 @Named("homeBean")
 public class HomeBean implements Serializable {
 
-	private String paginaCadastrarTecnico = "pages/tecnico/cadastrarTecnico.xhtml";
-	private String paginaCadastrarUsuario = "pages/usuario/cadastrarUsuario.xhtml";
+	private static final long serialVersionUID = -7502765150398458880L;
 	
+	private String paginaCadastrarTecnico = "/pages/tecnico/cadastrarTecnico.xhtml";
+	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
 	private String hello = "hello";
 	
-	/**
-	 * 
-	 */
-	public HomeBean() {
-		
-	}
+	public HomeBean() {	}
 
 	@PostConstruct
 	public void init() {
@@ -42,7 +38,11 @@ public class HomeBean implements Serializable {
 	public void redirecionarPaginaCadastroTecnico() throws IOException {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + paginaCadastrarTecnico);
-        System.out.println("aa");
+	}
+	
+	public void redirecionarPaginaCadastroUsuario() throws IOException {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        context.redirect(context.getRequestContextPath() + paginaCadastrarUsuario);
 	}
 	
 	public String getHello() {

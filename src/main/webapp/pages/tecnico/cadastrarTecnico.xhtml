@@ -4,8 +4,56 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-       
-	<body> 
-		<p:outputLabel value="#{cadastroTecnicoBean.hello}"></p:outputLabel>
+      
+	<body>
+		<h:form>
+		<div class="column">
+			<div class="span4">
+				<p:outputLabel value="Nome:"></p:outputLabel>
+				<p:inputText value="#{cadastroTecnicoBean.name}"></p:inputText>
+			</div>
+
+			<br/>
+			<div class="span4">
+				<p:outputLabel value="Cpf:"></p:outputLabel>
+				<p:inputText value="#{cadastroTecnicoBean.cpf}"></p:inputText>
+			</div>
+			
+			<br/>
+			<div class="span4">
+				<p:outputLabel value="Email:"></p:outputLabel>
+				<p:inputText value="#{cadastroTecnicoBean.email}"></p:inputText>
+			</div>
+			
+			<br/>
+			<div class="span4">
+				<p:outputLabel value="Senha:"></p:outputLabel>
+				<h:inputSecret value="#{cadastroTecnicoBean.password}"></h:inputSecret >
+			</div>
+			
+			<br/>
+			<div class="span4">
+				<p:outputLabel value="Senha Confirmação:"></p:outputLabel>
+				<h:inputSecret value="#{cadastroTecnicoBean.name}"></h:inputSecret >
+			</div>
+			
+			<br/>
+			<div class="span4">
+				<p:outputLabel value="Estado:"></p:outputLabel>
+			</div>
+			
+			<div class="align: right">
+				<p:inputText value="#{cadastroTecnicoBean.name}"></p:inputText>
+			</div>
+			
+				<br/>
+				<div class="span4">
+					<p:outputLabel value="Cidade: "></p:outputLabel>
+				</div>
+				<div class="align: right">
+					<p:inputText value="#{cadastroTecnicoBean.name}"></p:inputText>
+				</div>
+			</div> 
+		</h:form> 
 	</body> 
 </html>
