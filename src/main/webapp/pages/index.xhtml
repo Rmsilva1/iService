@@ -2,15 +2,19 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui">
- 
 	<h:head>
- 		Hello from iService!
+ 		Bem vindo ao iService!
 	</h:head>
-     
-     <h:body>
+	<h:body>
 	     <h:form>
-		     <h:outputText value="#{homeBean.hello}" />
+		     <div class="row">
+			     <div class="span7">
+			     	<p:outputLabel value="Primeiramente, você é um tecnico ou cliente?"></p:outputLabel>
+			     </div>
+			     <div class="span4">
+			     	<h:commandLink value="Tecnico" action="#{homeBean.redirecionarPaginaCadastroTecnico()}"></h:commandLink>
+			     </div>
+		     </div>
 	     </h:form>
-         <p:spinner/>
      </h:body>
 </html>
