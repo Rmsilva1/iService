@@ -1,24 +1,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
-	<h:head>
- 		Bem vindo ao iService!
-	</h:head>
-	<h:body>
-	     <h:form>
-		     <div class="row">
-			     <div class="span7">
-			     	<p:outputLabel value="Primeiramente, você é um cliente ou tecnico?"></p:outputLabel>
-			     </div>
-			     <div class="span4">
-			     	<h:commandLink value="Cliente" action="#{homeBean.redirecionarPaginaCadastro()}"></h:commandLink>
-			     </div>
-			      <div class="span4">
-			     	<h:commandLink value="Tecnico" action="#{homeBean.redirecionarPaginaCadastroTecnico()}">
-			     	</h:commandLink>
-			     </div>
-		     </div>
-	     </h:form>
-     </h:body>
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	<style>
+		margins-debug{
+			outline: 1px dashed blue;
+		}
+	</style>
+	<div style="align:center">
+		<h:head>
+		   	<p:outputLabel value="Bem vindo ao iService!"></p:outputLabel>
+		</h:head>
+		<br />
+		<br />
+		<h:body>
+		     <h:form>
+			     <div class="row">
+		     		<p:outputLabel value="Primeiramente, você é um cliente ou tecnico?"></p:outputLabel>
+					<br />
+					<br />     
+				     <p:panelGrid styleClass="margins-debug">
+					     <p:row>
+					     	<p:commandButton value="Cliente" action="#{homeBean.redirecionarPaginaCadastro()}"/>
+					     	<p:commandButton style="margin-left: 10px" value="Tecnico" action="#{homeBean.redirecionarPaginaCadastroTecnico()}">
+				     		    <f:setPropertyActionListener target="#{cadastroUsuarioBean.isTecnico}" value="#{homeBean.isTecnico}" />
+					     	</p:commandButton>
+					     </p:row>
+				     </p:panelGrid>
+				 </div>
+		     </h:form>
+	     </h:body>
+    </div>
 </html>

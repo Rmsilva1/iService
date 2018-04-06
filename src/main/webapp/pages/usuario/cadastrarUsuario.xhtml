@@ -7,78 +7,78 @@
 	<body>
 		<h:form>
 			<div class="align: center">
-			
 				<div class="span4">
-					<p:outputLabel value="Nome:"></p:outputLabel>
+					<p:outputLabel value="Nome:"/>
+					<p:outputLabel value="#{cadastroUsuarioBean.isTecnico}"></p:outputLabel>
 				</div>
+				
 				<div class="align: right">
-					<p:inputText value="#{cadastroUsuarioBean.nome}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.nome}"/>
 				</div>
 	
 				<br/>
 				<div class="span4">
-					<p:outputLabel value="Cpf:"></p:outputLabel>
+					<p:outputLabel value="Cpf:"/>
 				</div>
 				<div class="align: righ">
-					<p:inputText value="#{cadastroUsuarioBean.cpf}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.cpf}"/>
 				</div>
 				
 				<br/>
 				<div class="span4">
-					<p:outputLabel value="Email:"></p:outputLabel>
+					<p:outputLabel value="Email:"/>
 				</div>
 				
 				<div class="align: right">	
-					<p:inputText value="#{cadastroUsuarioBean.email}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.email}"/>
 				</div>
 				<br/>
 				
 				<div class="span4">
-					<p:outputLabel value="Senha:"></p:outputLabel>
+					<p:outputLabel value="Senha:"/>
 				</div>
 				
 				<div class="align: right">
-					<h:inputSecret value="#{cadastroUsuarioBean.senha}"></h:inputSecret >
+					<h:inputSecret value="#{cadastroUsuarioBean.senha}"/>
 				</div>
 				
 				<br/>
 				<div class="span4">
-					<p:outputLabel value="Senha Confirmação:"></p:outputLabel>
+					<p:outputLabel value="Senha Confirmação:"/>
 				</div>
 	
 				<div>
-					<h:inputSecret value="#{cadastroUsuarioBean.senhaConfirma}"></h:inputSecret >
+					<h:inputSecret value="#{cadastroUsuarioBean.senhaConfirma}"/>
 				</div>
 	
 				<br/>
 				<div class="span4">
-					<p:outputLabel value="Estado:"></p:outputLabel>
+					<p:outputLabel value="Estado:"/>
 				</div>
 				<div class="align: right">
-					<p:inputText value="#{cadastroUsuarioBean.estado}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.estado}"/>
 				</div>
 				
 				<br/>
 				<div class="span4">
-					<p:outputLabel value="Cidade: "></p:outputLabel>
+					<p:outputLabel value="Cidade: "/>
 				</div>
 				<div class="align: right">
-					<p:inputText value="#{cadastroUsuarioBean.cidade}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.cidade}"/>
 				</div>
 				
 				<br/>
 				<div class="span4">
-					<p:outputLabel value="Bairro: "></p:outputLabel>
+					<p:outputLabel value="Bairro: "/>
 				</div>
 				<div class="align: right">
-					<p:inputText value="#{cadastroUsuarioBean.bairro}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.bairro}"/>
 				</div>
 				
 				<br/>
 				<div class="span4">
-					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.voltar()}"></p:commandButton>
-					<p:commandButton value="Cadastrar!" action="#{cadastroUsuarioBean.cadastrar()}"></p:commandButton>
-					
+					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.voltar()}"/>
+					<p:commandButton value="Cadastrar!" action="#{cadastroUsuarioBean.cadastrar()}"/>
 				</div>
 			</div> 
 		</h:form> 
