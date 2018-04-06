@@ -12,7 +12,7 @@
 					<p:outputLabel value="Nome:"></p:outputLabel>
 				</div>
 				<div class="align: right">
-					<p:inputText value="#{cadastroUsuarioBean.}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.nome}"></p:inputText>
 				</div>
 	
 				<br/>
@@ -20,7 +20,7 @@
 					<p:outputLabel value="Cpf:"></p:outputLabel>
 				</div>
 				<div class="align: righ">
-					<p:inputText value="#{cadastroTecnicoBean.cpf}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.cpf}"></p:inputText>
 				</div>
 				
 				<br/>
@@ -29,7 +29,7 @@
 				</div>
 				
 				<div class="align: right">	
-					<p:inputText value="#{cadastroTecnicoBean.email}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.email}"></p:inputText>
 				</div>
 				<br/>
 				
@@ -38,7 +38,7 @@
 				</div>
 				
 				<div class="align: right">
-					<h:inputSecret value="#{cadastroTecnicoBean.password}"></h:inputSecret >
+					<h:inputSecret value="#{cadastroUsuarioBean.senha}"></h:inputSecret >
 				</div>
 				
 				<br/>
@@ -47,7 +47,7 @@
 				</div>
 	
 				<div>
-					<h:inputSecret value="#{cadastroTecnicoBean.name}"></h:inputSecret >
+					<h:inputSecret value="#{cadastroUsuarioBean.senhaConfirma}"></h:inputSecret >
 				</div>
 	
 				<br/>
@@ -55,7 +55,7 @@
 					<p:outputLabel value="Estado:"></p:outputLabel>
 				</div>
 				<div class="align: right">
-					<p:inputText value="#{cadastroTecnicoBean.name}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.estado}"></p:inputText>
 				</div>
 				
 				<br/>
@@ -63,7 +63,22 @@
 					<p:outputLabel value="Cidade: "></p:outputLabel>
 				</div>
 				<div class="align: right">
-					<p:inputText value="#{cadastroTecnicoBean.name}"></p:inputText>
+					<p:inputText value="#{cadastroUsuarioBean.cidade}"></p:inputText>
+				</div>
+				
+				<br/>
+				<div class="span4">
+					<p:outputLabel value="Bairro: "></p:outputLabel>
+				</div>
+				<div class="align: right">
+					<p:inputText value="#{cadastroUsuarioBean.bairro}"></p:inputText>
+				</div>
+				
+				<br/>
+				<div class="span4">
+					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.redirecionarPaginaIndex()}"></p:commandButton>
+					<p:commandButton value="Cadastrar!" action="#{cadastroUsuarioBean.cadastrar()}"></p:commandButton>
+					
 				</div>
 			</div> 
 		</h:form> 
