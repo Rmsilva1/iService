@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -20,7 +21,9 @@ public class CadastroUsuarioBean implements Serializable{
 	
 	private String paginaIndex = "/pages/index.xhtml";
 	
+	@ManagedProperty(value="#{param.sender}")
 	private Boolean isTecnico = false;
+	
 	private String cpf;
 	private String email;
 	private String senha;
@@ -30,20 +33,29 @@ public class CadastroUsuarioBean implements Serializable{
 	private String estado;
 	private String cidade;
 	private String bairro;
-	
 
 	@PostConstruct
-	public void init() { }
-	
-	
+	public void init() {
+		//DEPRECATED?
+		//isTecnico = (Boolean) WebResources.getFlashContext().get(CODIGO_IS_TECNICO);
+		
+		/**
+		 * TODO Pegar os valores da sessão
+		 * 		booleano de se é para cadastrar usuario normal ou tecnico.
+		 * 		Popular a tela para personalizada conforme a decisão do usuario.
+		 */
+	}
 	
 	public void cadastrar() {
 		//TODO
 	}
 	
 	public void redirecionarPaginaIndex() throws IOException {
-		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-		context.redirect(context.getRequestContextPath() + paginaIndex);
+	    FacesContext.getCurrentInstance().getExternalContext().dispatch(paginaIndex);
+	}
+	
+	public String voltar() {
+		return "/pages/index.xhtml";
 	}
 
 	/**

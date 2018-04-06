@@ -9,13 +9,14 @@
 	     <h:form>
 		     <div class="row">
 			     <div class="span7">
-			     	<p:outputLabel value="Primeiramente, você é um tecnico ou cliente?"></p:outputLabel>
+			     	<p:outputLabel value="Primeiramente, você é um cliente ou tecnico?"></p:outputLabel>
 			     </div>
 			     <div class="span4">
-			     	<h:commandLink value="Cliente" action="#{homeBean.redirecionarPaginaCadastroUsuario()}"></h:commandLink>
+			     	<h:commandLink value="Cliente" action="#{homeBean.redirecionarPaginaCadastro()}"></h:commandLink>
 			     </div>
 			      <div class="span4">
-			     	<h:commandLink value="Tecnico" action="#{homeBean.redirecionarPaginaCadastroTecnico()}"></h:commandLink>
+			     	<h:commandLink value="Tecnico" action="#{homeBean.redirecionarPaginaCadastroTecnico()}">
+			     	</h:commandLink>
 			     </div>
 		     </div>
 	     </h:form>

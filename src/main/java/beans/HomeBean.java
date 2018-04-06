@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -22,35 +23,36 @@ import javax.inject.Named;
 @Named("homeBean")
 public class HomeBean implements Serializable {
 
-	private static final long serialVersionUID = -7502765150398458880L;
-	
-	private String paginaCadastrarTecnico = "/pages/tecnico/cadastrarTecnico.xhtml";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
-	private String hello = "hello";
+	private Boolean isTecnico = false;
 	
-	public HomeBean() {	}
+	public HomeBean(){ }
 
 	@PostConstruct
 	public void init() {
-		this.hello = "Hello!";
 	}
 	
 	public void redirecionarPaginaCadastroTecnico() throws IOException {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        context.redirect(context.getRequestContextPath() + paginaCadastrarTecnico);
+		setIsTecnico(true);
+		redirecionarPaginaCadastro();
 	}
 	
-	public void redirecionarPaginaCadastroUsuario() throws IOException {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        context.redirect(context.getRequestContextPath() + paginaCadastrarUsuario);
-	}
-	
-	public String getHello() {
-		return hello;
+	public void redirecionarPaginaCadastro() throws IOException {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaCadastrarUsuario);
 	}
 
-	public void setHello(String hello) {
-		this.hello = hello;
+	public Boolean getIsTecnico() {
+		return isTecnico;
+	}
+	
+	public void setIsTecnico(Boolean isTecnico) {
+		this.isTecnico = isTecnico;
 	}
 
 }
