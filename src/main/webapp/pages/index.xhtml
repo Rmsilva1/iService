@@ -2,28 +2,23 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
-	<style>
-		margins-debug{
-			outline: 1px dashed blue;
-		}
-	</style>
 	<div style="align:center">
 		<h:head>
-		   	<p:outputLabel value="Bem vindo ao iService!"></p:outputLabel>
+		   	<p:outputLabel value="Bem vindo ao iService!"/>
 		</h:head>
 		<br />
 		<br />
 		<h:body>
-		     <h:form>
+			<h:form>
 			     <div class="row">
-		     		<p:outputLabel value="Primeiramente, você é um cliente ou tecnico?"></p:outputLabel>
+		     		<p:outputLabel value="Primeiramente, você é um cliente ou tecnico?"/>
 					<br />
 					<br />     
 				     <p:panelGrid styleClass="margins-debug">
 					     <p:row>
-					     	<p:commandButton value="Cliente" action="#{homeBean.redirecionarPaginaCadastro()}"/>
-					     	<p:commandButton style="margin-left: 10px" value="Tecnico" action="#{homeBean.redirecionarPaginaCadastroTecnico()}">
-				     		    <f:setPropertyActionListener target="#{cadastroUsuarioBean.isTecnico}" value="#{homeBean.isTecnico}" />
+					     	<p:commandButton value="Cliente" action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}"/>
+					     	<p:commandButton style="margin-left: 10px" value="Tecnico" action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}">
+				     		    <f:setPropertyActionListener target="#{cadastroUsuarioBean.isTecnico}" value="#{true}" />
 					     	</p:commandButton>
 					     </p:row>
 				     </p:panelGrid>

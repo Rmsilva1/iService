@@ -1,15 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-	<body>
-		<h:form>
-			<div class="align: center">
+	<div style="align: center">
+		<h:head>
+		   	<p:outputLabel value="Cadastro De Tecnico"></p:outputLabel>
+		</h:head>
+		<p:messages id="messages" showDetail="true" autoUpdate="true" />
+		<br />
+		<br />
+		<h:body>
+			<h:form>
 				<div class="span4">
 					<p:outputLabel value="Nome:"/>
-					<p:outputLabel value="#{cadastroUsuarioBean.isTecnico}"></p:outputLabel>
+					<p:outputLabel value="#{cadastroUsuarioBean.isTecnico}"/>
 				</div>
 				
 				<div class="align: right">
@@ -37,20 +41,15 @@
 				<div class="span4">
 					<p:outputLabel value="Senha:"/>
 				</div>
-				
-				<div class="align: right">
-					<h:inputSecret value="#{cadastroUsuarioBean.senha}"/>
-				</div>
-				
+			        <p:password id="pwd1" value="#{cadastroUsuarioBean.senha}" feedback="true" match="pwd2" label="Senha" required="true" />
 				<br/>
+
 				<div class="span4">
 					<p:outputLabel value="Senha Confirmação:"/>
 				</div>
-	
 				<div>
-					<h:inputSecret value="#{cadastroUsuarioBean.senhaConfirma}"/>
+			       <p:password id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}" label="Senha 2" />
 				</div>
-	
 				<br/>
 				<div class="span4">
 					<p:outputLabel value="Estado:"/>
@@ -76,11 +75,9 @@
 				</div>
 				
 				<br/>
-				<div class="span4">
-					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.voltar()}"/>
-					<p:commandButton value="Cadastrar!" action="#{cadastroUsuarioBean.cadastrar()}"/>
-				</div>
-			</div> 
-		</h:form> 
-	</body> 
+				<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.voltar()}"/>
+				<p:commandButton value="Cadastrar!" action="#{cadastroUsuarioBean.cadastrar()}"/>
+			</h:form> 
+		</h:body> 
+	</div> 
 </html>

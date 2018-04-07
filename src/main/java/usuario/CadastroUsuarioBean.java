@@ -2,8 +2,11 @@ package usuario;
 
 import java.io.IOException;
 import java.io.Serializable;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -14,8 +17,8 @@ import javax.inject.Named;
 public class CadastroUsuarioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
 	private String paginaIndex = "/pages/index.xhtml";
+	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
 	
 	private Boolean isTecnico;
 	private String cpf;
@@ -28,30 +31,18 @@ public class CadastroUsuarioBean implements Serializable{
 	private String cidade;
 	private String bairro;
 
-//	@PostConstruct
-//	public void init() {
-//		
-//		System.out.println(isTecnico);
-//		//DEPRECATED?
-//		//isTecnico = (Boolean) WebResources.getFlashContext().get(CODIGO_IS_TECNICO);
-//		
-//		/**
-//		 * TODO Pegar os valores da sessão
-//		 * 		booleano de se é para cadastrar usuario normal ou tecnico.
-//		 * 		Popular a tela para personalizada conforme a decisão do usuario.
-//		 */
-//	}
-	
-	public void cadastrar() {
-		//TODO
-	}
-	
-	public void redirecionarPaginaIndex() throws IOException {
-	    FacesContext.getCurrentInstance().getExternalContext().dispatch(paginaIndex);
-	}
+	@PostConstruct
+	public void init() {}
+
+	public void cadastrar() {}
 	
 	public String voltar() {
 		return "/pages/index.xhtml";
+	}
+	
+	public void redirecionarPaginaCadastro() throws IOException {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaCadastrarUsuario);
 	}
 
 	public Boolean getIsTecnico() {
