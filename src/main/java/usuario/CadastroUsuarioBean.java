@@ -10,6 +10,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import entity.Usuario;
+
 
 @ViewScoped
 @ManagedBean
@@ -17,10 +19,13 @@ import javax.inject.Named;
 public class CadastroUsuarioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private String paginaIndex = "/pages/index.xhtml";
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
 	
-	private Boolean isTecnico;
+	private UsuarioRetorno usuarioRetorno;
+	
+	private UsuarioService usuarioService;
+
+	private Boolean isTecnico = false;
 	private String cpf;
 	private String email;
 	private String senha;
@@ -29,12 +34,45 @@ public class CadastroUsuarioBean implements Serializable{
 	private String telefone;
 	private String estado;
 	private String cidade;
+	private String cep;
 	private String bairro;
+	private String rua;
+	private String complemento;
 
 	@PostConstruct
-	public void init() {}
+	public void init() {
+		usuarioService = new UsuarioService();
+	}
+	
+	public String validarCadastro() throws Exception {
+		if(senha.equals(senhaConfirma)) {
+			cadastrar();
+			return null;
+		}else {
+			return paginaCadastrarUsuario;
+		}
+	}
 
-	public void cadastrar() {}
+	public void cadastrar() throws Exception {
+ 		Usuario usuarioPersistir = new Usuario();
+ 		usuarioPersistir.setId(1);
+		usuarioPersistir.setIsTecnico(isTecnico == true ? 1 : 0);
+		usuarioPersistir.setCpf("05810184944");
+		usuarioPersistir.setEmail("email"); 
+		usuarioPersistir.setSenha("senha");
+		usuarioPersistir.setNome("nome");
+		usuarioPersistir.setTelefone("995779430");
+		usuarioPersistir.setEstado("estado");
+		usuarioPersistir.setCidade("cidade");
+		usuarioPersistir.setCep("81630070");
+		usuarioPersistir.setBairro("bairro");
+		usuarioPersistir.setRua("rua");
+		usuarioPersistir.setComplemento("complemento");
+		
+		usuarioService.cadastrarUsuario(usuarioPersistir);
+			
+	
+	}
 	
 	public String voltar() {
 		return "/pages/index.xhtml";
@@ -124,4 +162,45 @@ public class CadastroUsuarioBean implements Serializable{
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+
+	public UsuarioRetorno getUsuarioRetorno() {
+		return usuarioRetorno;
+	}
+
+	public void setUsuarioRetorno(UsuarioRetorno usuarioRetorno) {
+		this.usuarioRetorno = usuarioRetorno;
+	}
+
+	public String getPaginaCadastrarUsuario() {
+		return paginaCadastrarUsuario;
+	}
+
+	public void setPaginaCadastrarUsuario(String paginaCadastrarUsuario) {
+		this.paginaCadastrarUsuario = paginaCadastrarUsuario;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
 }

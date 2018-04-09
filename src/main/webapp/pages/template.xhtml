@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+	<h:head>
+		<title>iService</title>
+		<h:form>  
+    <p:growl id="messages"/>
+    <p:menubar>
+        <p:menuitem value="Home" icon="ui-icon-home" 
+        	url="http://localhost:9999/iService/pages/index.xhtml"/>
+ 
+        <f:facet name="options">
+            <p:commandButton type="button" value="Logar"/>
+            <p:commandButton style="margin-left: 10px" type="button" value="Registrar" action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}"/>
+        </f:facet>
+    </p:menubar>
+</h:form>
+	</h:head> 
+	<body> 
+		<h1>iService</h1>
+		<hr/>
+		<ui:insert>
+		
+		</ui:insert>	
+	</body> 
+</html>
