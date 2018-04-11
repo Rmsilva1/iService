@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 
 import entity.Usuario;
 
+
+
 /**
  * @author Rafael Mateus
  *	Classe responsavel pela persistencia dos dados do Usuario.
