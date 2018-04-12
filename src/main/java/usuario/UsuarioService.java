@@ -8,8 +8,6 @@ import javax.transaction.Transactional;
 
 import entity.Usuario;
 
-
-
 /**
  * @author Rafael Mateus
  *	Classe responsavel pela persistencia dos dados do Usuario.
@@ -18,14 +16,10 @@ import entity.Usuario;
 
 @Named
 public class UsuarioService {
-	
-//	@PersistenceContext
-//	private EntityManager em;
-	
 	public UsuarioService() {}
 	
 	@Transactional
-	public void cadastrarUsuario(Usuario usuario) {
+	public Boolean cadastrarUsuario(Usuario usuario) {
 		try{
 			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
@@ -34,10 +28,12 @@ public class UsuarioService {
 			em.getTransaction().begin();
 			em.persist(usuario);
 			em.getTransaction().commit();
-
 			entityManagerFactory.close();
- 		}catch (Exception e){
+ 		
+		}catch (Exception e){
  			e.printStackTrace();
-		}
+ 			return null;
+ 		}
+		return true;
 	}
 }

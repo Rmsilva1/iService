@@ -20,9 +20,9 @@ public class CadastroUsuarioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
+	private String paginaHomeTecnico = "/pages/usuario/tecnico/homeTecnico";
 	
 	private UsuarioRetorno usuarioRetorno;
-	
 	private UsuarioService usuarioService;
 
 	private Boolean isTecnico = false;
@@ -44,12 +44,9 @@ public class CadastroUsuarioBean implements Serializable{
 		usuarioService = new UsuarioService();
 	}
 	
-	public String validarCadastro() throws Exception {
+	public void validarCadastro() throws Exception {
 		if(senha.equals(senhaConfirma)) {
 			cadastrar();
-			return null;
-		}else {
-			return paginaCadastrarUsuario;
 		}
 	}
 
@@ -57,21 +54,20 @@ public class CadastroUsuarioBean implements Serializable{
  		Usuario usuarioPersistir = new Usuario();
  		usuarioPersistir.setId(1);
 		usuarioPersistir.setIsTecnico(isTecnico == true ? 1 : 0);
-		usuarioPersistir.setCpf("05810184944");
-		usuarioPersistir.setEmail("email"); 
-		usuarioPersistir.setSenha("senha");
-		usuarioPersistir.setNome("nome");
-		usuarioPersistir.setTelefone("995779430");
-		usuarioPersistir.setEstado("estado");
-		usuarioPersistir.setCidade("cidade");
-		usuarioPersistir.setCep("81630070");
-		usuarioPersistir.setBairro("bairro");
-		usuarioPersistir.setRua("rua");
-		usuarioPersistir.setComplemento("complemento");
+		usuarioPersistir.setCpf(cpf);
+		usuarioPersistir.setEmail(email); 
+		usuarioPersistir.setSenha(senha);
+		usuarioPersistir.setNome(nome);
+		usuarioPersistir.setTelefone(telefone);
+		usuarioPersistir.setEstado(estado);
+		usuarioPersistir.setCidade(cidade);
+		usuarioPersistir.setCep(cep);
+		usuarioPersistir.setBairro(bairro);
+		usuarioPersistir.setRua(rua);
+		usuarioPersistir.setComplemento(complemento);
 		
-		usuarioService.cadastrarUsuario(usuarioPersistir);
-			
-	
+		if(usuarioService.cadastrarUsuario(usuarioPersistir));
+			redirecionarPaginaHomeTecnico();
 	}
 	
 	public String voltar() {
@@ -81,6 +77,12 @@ public class CadastroUsuarioBean implements Serializable{
 	public void redirecionarPaginaCadastro() throws IOException {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaCadastrarUsuario);
+	}
+	
+	public void redirecionarPaginaHomeTecnico() throws IOException {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestServletPath() + paginaHomeTecnico)  ;
+		
 	}
 
 	public Boolean getIsTecnico() {
@@ -202,5 +204,4 @@ public class CadastroUsuarioBean implements Serializable{
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-
 }

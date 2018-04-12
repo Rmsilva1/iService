@@ -13,11 +13,11 @@
 		<br/>
 			<div class="span4">
 				<p:outputLabel value="Nome:"/>
-				<p:outputLabel value="#{cadastroUsuarioBean.isTecnico}"/>
+				<p:outputLabel value="#{cadastroUsuarioBean.isTecnico}" required = "true"/>
 			</div>
 			
 			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.nome}"/>
+				<p:inputText value="#{cadastroUsuarioBean.nome}" required = "true"/>
 			</div>
 	
 			<br/>
@@ -25,7 +25,7 @@
 				<p:outputLabel value="Cpf:"/>
 			</div>
 			<div class="align: righ">
-				<p:inputText value="#{cadastroUsuarioBean.cpf}"/>
+				<p:inputText value="#{cadastroUsuarioBean.cpf}" required = "true"/>
 			</div>
 			
 			<br/>
@@ -34,7 +34,7 @@
 			</div>
 			
 			<div class="align: right">	
-				<p:inputText value="#{cadastroUsuarioBean.email}"/>
+				<p:inputText value="#{cadastroUsuarioBean.email}" required = "true"/>
 			</div>
 			<br/>
 			
@@ -42,7 +42,7 @@
 				<p:outputLabel value="Senha:"/>
 			</div>
 		        <p:password id="pwd1" value="#{cadastroUsuarioBean.senha}" 
-		        	feedback="true" match="pwd2" label="Senha" required="true" />
+		        	feedback="true" match="pwd2" label="Senha" required="true"/>
 			<br/>
 	
 			<div class="span4">
@@ -57,7 +57,7 @@
 				<p:outputLabel value="Estado:"/>
 			</div>
 			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.estado}"/>
+				<p:inputText value="#{cadastroUsuarioBean.estado}" required = "true"/>
 			</div>
 			
 			<br/>
@@ -65,19 +65,19 @@
 				<p:outputLabel value="Cidade: "/>
 			</div>
 			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.cidade}"/>
+				<p:inputText value="#{cadastroUsuarioBean.cidade}" required = "true"/>
 			</div>
 			
 			<br/>
 			<div class="span4">
-				<p:outputLabel value="Bairro: "/>
+				<p:outputLabel value="Bairro: " />
 			</div>
 			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.bairro}"/>
+				<p:inputText value="#{cadastroUsuarioBean.bairro}" required = "true"/>
 			</div>
 			
 			<br/>
 			<p:commandButton value="Voltar" url="http://localhost:9999/iService/pages/index.xhtml"/>
-			<p:commandButton value="Cadastrar!" action="#{cadastroUsuarioBean.cadastrar()}"/>
+			<p:commandButton value="Cadastrar" action="#{cadastroUsuarioBean.validarCadastro()}"/>
 	</div>
 </ui:decorate>
