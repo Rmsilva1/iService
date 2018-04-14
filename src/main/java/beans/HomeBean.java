@@ -8,8 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
-
 
 /**
  * @author Rafael Mateus
@@ -18,18 +16,18 @@ import javax.inject.Named;
  */
 
 @ViewScoped
-@ManagedBean
-@Named("homeBean")
+@ManagedBean(name ="homeBean")
+
 public class HomeBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
 
-	public HomeBean() {	}
+	public HomeBean() {}
 
 	@PostConstruct
-	public void init() { }
+	public void init() {}
 	
 	public void redirecionarPaginaCadastro() throws IOException {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

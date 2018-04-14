@@ -8,12 +8,10 @@
 		<h:head>
 		   	<p:outputLabel value="Cadastro De Tecnico" />
 		</h:head>
-		<p:messages id="messages" showDetail="true" autoUpdate="true" />
 		<br/>
 		<br/>
 			<div class="span4">
 				<p:outputLabel value="Nome:"/>
-				<p:outputLabel value="#{cadastroUsuarioBean.isTecnico}" required = "true"/>
 			</div>
 			
 			<div class="align: right">
@@ -41,8 +39,7 @@
 			<div class="span4">
 				<p:outputLabel value="Senha:"/>
 			</div>
-		        <p:password id="pwd1" value="#{cadastroUsuarioBean.senha}" 
-		        	feedback="true" match="pwd2" label="Senha" required="true"/>
+		        <p:password id="pwd1" value="#{cadastroUsuarioBean.senha}" label="Senha" required="true"/>
 			<br/>
 	
 			<div class="span4">

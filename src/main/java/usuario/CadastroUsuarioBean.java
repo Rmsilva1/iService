@@ -8,17 +8,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 import entity.Usuario;
 
-
-@ViewScoped
-@ManagedBean
-@Named("cadastroUsuarioBean")
+@ManagedBean(name="cadastroUsuarioBean")
 public class CadastroUsuarioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
 	private String paginaHomeTecnico = "/pages/usuario/tecnico/homeTecnico";
 	
@@ -38,6 +35,8 @@ public class CadastroUsuarioBean implements Serializable{
 	private String bairro;
 	private String rua;
 	private String complemento;
+	
+	public CadastroUsuarioBean() {}
 
 	@PostConstruct
 	public void init() {
@@ -47,6 +46,8 @@ public class CadastroUsuarioBean implements Serializable{
 	public void validarCadastro() throws Exception {
 		if(senha.equals(senhaConfirma)) {
 			cadastrar();
+		}else {
+	//		FacesContext.getCurrentInstance().addMessage("Error", "As senhas devem ser iguais.");
 		}
 	}
 
@@ -65,7 +66,6 @@ public class CadastroUsuarioBean implements Serializable{
 		usuarioPersistir.setBairro(bairro);
 		usuarioPersistir.setRua(rua);
 		usuarioPersistir.setComplemento(complemento);
-		
 		if(usuarioService.cadastrarUsuario(usuarioPersistir));
 			redirecionarPaginaHomeTecnico();
 	}
