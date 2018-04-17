@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import entity.Usuario;
 
+@ViewScoped
 @ManagedBean(name="cadastroUsuarioBean")
 public class CadastroUsuarioBean implements Serializable{
 	

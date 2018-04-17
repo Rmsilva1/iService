@@ -10,14 +10,13 @@
 		</h:head>
 		<br/>
 		<br/>
+		<h:form>
 			<div class="span4">
 				<p:outputLabel value="Nome:"/>
 			</div>
-			
 			<div class="align: right">
 				<p:inputText value="#{cadastroUsuarioBean.nome}" required = "true"/>
 			</div>
-	
 			<br/>
 			<div class="span4">
 				<p:outputLabel value="Cpf:"/>
@@ -25,7 +24,6 @@
 			<div class="align: righ">
 				<p:inputText value="#{cadastroUsuarioBean.cpf}" required = "true"/>
 			</div>
-			
 			<br/>
 			<div class="span4">
 				<p:outputLabel value="Email:"/>
@@ -76,5 +74,6 @@
 			<br/>
 			<p:commandButton value="Voltar" url="http://localhost:9999/iService/pages/index.xhtml"/>
 			<p:commandButton value="Cadastrar" action="#{cadastroUsuarioBean.validarCadastro()}"/>
+		</h:form>
 	</div>
 </ui:decorate>
