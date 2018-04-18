@@ -1,79 +1,89 @@
 <ui:decorate xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      template="/pages/template.xhtml">
-	<div style="align: center">
-		<h:head>
-		   	<p:outputLabel value="Cadastro De Tecnico" />
-		</h:head>
-		<br/>
-		<br/>
-		<h:form>
-			<div class="span4">
-				<p:outputLabel value="Nome:"/>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+	<ui:define name="head">
+		<title>iService</title>
+		<h:outputStylesheet name="css/starter-template.css" />
+	</ui:define>
+	<ui:define name="body">
+		<div class="container">
+			<div class="starter-template">
+				<br /> <br /> <br />
+				<h:head>
+					<p:outputLabel value="Cadastrar usuario" />
+				</h:head>
+				<br /> <br />
+				<h:form>
+					<div class="span4">
+						<p:outputLabel value="Nome:" />
+					</div>
+					<div class="align: right">
+						<p:inputText value="#{cadastroUsuarioBean.nome}" required="true" />
+					</div>
+					<br />
+					<div class="span4">
+						<p:outputLabel value="Cpf:" />
+					</div>
+					<div class="align: righ">
+						<p:inputText value="#{cadastroUsuarioBean.cpf}" required="true" />
+					</div>
+					<br />
+					<div class="span4">
+						<p:outputLabel value="Email:" />
+					</div>
+
+					<div class="align: right">
+						<p:inputText value="#{cadastroUsuarioBean.email}" required="true" />
+					</div>
+					<br />
+
+					<div class="span4">
+						<p:outputLabel value="Senha:" />
+					</div>
+					<p:password id="pwd1" value="#{cadastroUsuarioBean.senha}"
+						label="Senha" required="true" />
+					<br />
+
+					<div class="span4">
+						<p:outputLabel value="Senha Confirmação:" />
+					</div>
+					<div>
+						<p:password id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}"
+							label="Senha 2" />
+					</div>
+					<br />
+					<div class="span4">
+						<p:outputLabel value="Estado:" />
+					</div>
+					<div class="align: right">
+						<p:inputText value="#{cadastroUsuarioBean.estado}" required="true" />
+					</div>
+
+					<br />
+					<div class="span4">
+						<p:outputLabel value="Cidade: " />
+					</div>
+					<div class="align: right">
+						<p:inputText value="#{cadastroUsuarioBean.cidade}" required="true" />
+					</div>
+
+					<br />
+					<div class="span4">
+						<p:outputLabel value="Bairro: " />
+					</div>
+					<div class="align: right">
+						<p:inputText value="#{cadastroUsuarioBean.bairro}" required="true" />
+					</div>
+
+					<br />
+					<p:commandButton value="Voltar"
+						url="http://localhost:9999/iService/pages/index.xhtml" />
+					<p:commandButton value="Cadastrar" style="margin-left: 2%"
+						action="#{cadastroUsuarioBean.validarCadastro()}" />
+				</h:form>
 			</div>
-			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.nome}" required = "true"/>
-			</div>
-			<br/>
-			<div class="span4">
-				<p:outputLabel value="Cpf:"/>
-			</div>
-			<div class="align: righ">
-				<p:inputText value="#{cadastroUsuarioBean.cpf}" required = "true"/>
-			</div>
-			<br/>
-			<div class="span4">
-				<p:outputLabel value="Email:"/>
-			</div>
-			
-			<div class="align: right">	
-				<p:inputText value="#{cadastroUsuarioBean.email}" required = "true"/>
-			</div>
-			<br/>
-			
-			<div class="span4">
-				<p:outputLabel value="Senha:"/>
-			</div>
-		        <p:password id="pwd1" value="#{cadastroUsuarioBean.senha}" label="Senha" required="true"/>
-			<br/>
-	
-			<div class="span4">
-				<p:outputLabel value="Senha Confirmação:"/>
-			</div>
-			<div>
-		       <p:password id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}" 
-		       	label="Senha 2" />
-			</div>
-			<br/>
-			<div class="span4">
-				<p:outputLabel value="Estado:"/>
-			</div>
-			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.estado}" required = "true"/>
-			</div>
-			
-			<br/>
-			<div class="span4">
-				<p:outputLabel value="Cidade: "/>
-			</div>
-			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.cidade}" required = "true"/>
-			</div>
-			
-			<br/>
-			<div class="span4">
-				<p:outputLabel value="Bairro: " />
-			</div>
-			<div class="align: right">
-				<p:inputText value="#{cadastroUsuarioBean.bairro}" required = "true"/>
-			</div>
-			
-			<br/>
-			<p:commandButton value="Voltar" url="http://localhost:9999/iService/pages/index.xhtml"/>
-			<p:commandButton value="Cadastrar" action="#{cadastroUsuarioBean.validarCadastro()}"/>
-		</h:form>
-	</div>
+		</div>
+	</ui:define>
 </ui:decorate>

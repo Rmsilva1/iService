@@ -48,7 +48,7 @@ public class CadastroUsuarioBean implements Serializable{
 		if(senha.equals(senhaConfirma)) {
 			cadastrar();
 		}else {
-	//		FacesContext.getCurrentInstance().addMessage("Error", "As senhas devem ser iguais.");
+		//FacesContext.getCurrentInstance().addMessage("Error", "As senhas devem ser iguais.");
 		}
 	}
 

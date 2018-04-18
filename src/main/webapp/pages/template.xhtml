@@ -1,27 +1,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
 	<h:head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
 		<title>iService</title>
-		<h:form>  
-    <p:growl id="messages"/>
-    <p:menubar>
-        <p:menuitem value="Home" icon="ui-icon-home" 
-        	url="http://localhost:9999/iService/pages/index.xhtml"/>
-        <f:facet name="options">
-            <p:commandButton type="button" value="Logar"/>
-            <p:commandButton style="margin-left: 10px" type="button" value="Registrar" action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}"/>
-        </f:facet>
-    </p:menubar>
-</h:form>
-	</h:head> 
-	<body> 
-		<h1>iService</h1>
-		<hr/>
-		<ui:insert>
-		
-		</ui:insert>	
-	</body> 
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" 
+						aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">iService</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">Sobre</a></li>
+						<li><a href="#contact">Contato</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<f:verbatim>
+		</f:verbatim>
+		<ui:insert name="head" />
+	</h:head>
+	<h:body>
+		<ui:insert name="body" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<h:outputScript name="bootstrap-3.3.7-dist/js/bootstrap.min.js" />
+	</h:body>
 </html>
