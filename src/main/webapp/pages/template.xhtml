@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 	<h:head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,6 +13,8 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
+				 	<p:messages id="messages" showDetail="true" closable="true">
+    				</p:messages>
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" 
 						aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span> <span

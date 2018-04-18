@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -18,7 +19,7 @@ public class CadastroUsuarioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
-	private String paginaHomeTecnico = "/pages/usuario/tecnico/homeTecnico";
+	private String paginaHomeTecnico = "/tecnico/homeTecnico.xhtml";
 	
 	private UsuarioRetorno usuarioRetorno;
 	private UsuarioService usuarioService;
@@ -32,7 +33,7 @@ public class CadastroUsuarioBean implements Serializable{
 	private String telefone;
 	private String estado;
 	private String cidade;
-	private String cep;
+	private Double cep;
 	private String bairro;
 	private String rua;
 	private String complemento;
@@ -48,7 +49,7 @@ public class CadastroUsuarioBean implements Serializable{
 		if(senha.equals(senhaConfirma)) {
 			cadastrar();
 		}else {
-		//FacesContext.getCurrentInstance().addMessage("Error", "As senhas devem ser iguais.");
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "As senhas devem ser iguais."));
 		}
 	}
 
@@ -81,8 +82,8 @@ public class CadastroUsuarioBean implements Serializable{
 	}
 	
 	public void redirecionarPaginaHomeTecnico() throws IOException {
-		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-		context.redirect(context.getRequestServletPath() + paginaHomeTecnico)  ;
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().redirect(paginaHomeTecnico);
 		
 	}
 
@@ -182,11 +183,11 @@ public class CadastroUsuarioBean implements Serializable{
 		this.paginaCadastrarUsuario = paginaCadastrarUsuario;
 	}
 
-	public String getCep() {
+	public Double getCep() {
 		return cep;
 	}
 
-	public void setCep(String cep) {
+	public void setCep(Double cep) {
 		this.cep = cep;
 	}
 

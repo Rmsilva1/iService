@@ -49,7 +49,7 @@ public class Usuario implements Serializable {
 	private String cidade;
 	
 	@Column(name = "CEP")
-	private String cep;
+	private Double cep;
 
 	@Column(name = "BAIRRO")
 	private String bairro;
@@ -158,11 +158,11 @@ public class Usuario implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public String getCep() {
+	public Double getCep() {
 		return cep;
 	}
 
-	public void setCep(String cep) {
+	public void setCep(Double cep) {
 		this.cep = cep;
 	}
 

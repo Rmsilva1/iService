@@ -53,6 +53,23 @@
 						<p:password id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}"
 							label="Senha 2" />
 					</div>
+					
+					<br/>
+					<div class="span4">
+						<p:outputLabel value="telefone:"/>
+					</div>
+					<div class="align: right">
+						<p:inputText value="#{cadastroUsuarioBean.telefone}" required="true" />
+					</div>
+					
+					<br/>
+					<div class="span4">
+						<p:outputLabel value="CEP:"/>
+					</div>
+					<div class="align: right">
+						<p:inputText value="#{cadastroUsuarioBean.cep}" required="true" converterMessage="Somente Numeros." />
+					</div>
+					
 					<br />
 					<div class="span4">
 						<p:outputLabel value="Estado:" />
