@@ -19,7 +19,7 @@ public class CadastroUsuarioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
-	private String paginaHomeTecnico = "/tecnico/homeTecnico.xhtml";
+	private String paginaHomeTecnico = "/iService/pages/usuario/tecnico/homeTecnico.xhtml";
 	
 	private UsuarioRetorno usuarioRetorno;
 	private UsuarioService usuarioService;
