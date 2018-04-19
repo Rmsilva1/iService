@@ -47,12 +47,35 @@ public class UsuarioService {
 			EntityManager em = entityManagerFactory.createEntityManager();
 			em.getTransaction().begin();
 			
-			Query query = em.createNamedQuery("SELECT U FROM USUARIO U");
+			Query query = em.createNamedQuery("SELECT u FROM Usuario U");
 			List<Usuario> usuarios = query.getResultList();
 
 			entityManagerFactory.close();
 
 			return usuarios;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Transactional
+	public Integer consultarMaiorIdUsuario() throws Exception{
+		try {
+			
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+			em.getTransaction().begin();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT MAX(id) FROM Usuario U");
+
+			Query query = em.createQuery(sql.toString());
+			Integer maiorIdUsuario = (Integer) query.getSingleResult();
+
+			entityManagerFactory.close();
+			return maiorIdUsuario ++;
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -68,16 +91,12 @@ public class UsuarioService {
 			
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("DELETE FROM USUARIOS");
+			sql.append("DELETE FROM Usuario");
 			sql.append("WHERE ID_USUARIO =: idUsuario");
-
 			
 			Query query = em.createQuery(sql.toString());
 			
 			query.setParameter("idUsuario", id);
-			
-			
-
 			entityManagerFactory.close();
 			
 		}catch(Exception e) {
