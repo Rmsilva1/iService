@@ -1,10 +1,12 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +28,9 @@ public class Usuario implements Serializable {
 	
 	@Column(name = "ISTECNICO", nullable = false)
 	private Integer isTecnico;
+	
+	@OneToMany(mappedBy = "Servicos")
+	private Set<Servico> servico;
 	
 	@Column(name = "CPF", nullable = false)
 	private String cpf;
@@ -164,6 +169,18 @@ public class Usuario implements Serializable {
 
 	public void setCep(Double cep) {
 		this.cep = cep;
+	}
+
+	public Set<Servico> getServico() {
+		return servico;
+	}
+
+	public void setServicos(Set<Servico> servico) {
+		this.servico = servico;
+	}
+
+	public void setServico(Set<Servico> servico) {
+		this.servico = servico;
 	}
 
 }

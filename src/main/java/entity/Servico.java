@@ -1,11 +1,16 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 /**
  * @author Rafael Mateus
@@ -16,7 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SERVICOS")
-public class Servicos implements Serializable {
+public class Servico implements Serializable {
 
 	private static final long serialVersionUID = -1259534850732841932L;
 
@@ -24,8 +29,9 @@ public class Servicos implements Serializable {
 	@Column(name = "ID_SERVICO", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "FK_TECNICO", unique = true, nullable = false)
-	private Integer fkTecnico;
+	@ManyToOne
+	@JoinColumn(name="FK_TECNICO", nullable = false)
+	private Usuario usuario;
 	
 	@Column(name = "FK_CATEGORIA", unique = true, nullable = false)
 	private Integer fkCategoria;
@@ -39,14 +45,10 @@ public class Servicos implements Serializable {
 	@Column(name = "PRECO", unique = true, nullable = false)
 	private String preco;
 
-	public Servicos() {}
+	public Servico() {}
 	
 	public Integer getId() {
 		return id;
-	}
-
-	public Integer getFkTecnico() {
-		return fkTecnico;
 	}
 
 	public Integer getFkCategoria() {
@@ -69,9 +71,6 @@ public class Servicos implements Serializable {
 		this.id = id;
 	}
 
-	public void setFkTecnico(Integer fkTecnico) {
-		this.fkTecnico = fkTecnico;
-	}
 
 	public void setFkCategoria(Integer fkCategoria) {
 		this.fkCategoria = fkCategoria;
@@ -87,5 +86,13 @@ public class Servicos implements Serializable {
 
 	public void setPreco(String preco) {
 		this.preco = preco;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

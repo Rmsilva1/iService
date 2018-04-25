@@ -8,11 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 @ViewScoped
-@Named("homeTecnicoBean")
-@ManagedBean
+@ManagedBean(name="homeTecnicoBean")
 public class HomeTecnicoBean implements Serializable{
 
 	private static final long serialVersionUID = 5560956621188613430L;
@@ -53,5 +51,4 @@ public class HomeTecnicoBean implements Serializable{
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaPerfil);
 	}
-	
 }

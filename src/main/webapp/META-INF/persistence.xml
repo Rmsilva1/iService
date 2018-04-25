@@ -5,7 +5,7 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="org.iservice.jpa">
    		<class>entity.Usuario</class>
-   		<class>entity.Servicos</class>
+   		<class>entity.Servico</class>
    		<exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>

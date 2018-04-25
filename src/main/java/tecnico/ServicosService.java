@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import entity.Servicos;
+import entity.Servico;
 
 /**
  * @author Rafael Mateus
@@ -22,11 +22,31 @@ import entity.Servicos;
 public class ServicosService implements Serializable {
 
 	private static final long serialVersionUID = -7871739195466875089L;
+	public ServicosService() { }
+	
+	
+	public Boolean cadastrarServico(Servico servico) throws Exception{
+		try {
+			
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+			
+			em.getTransaction().begin();
+			em.persist(servico);
+			em.getTransaction().commit();
+			em.close();
+
+			return true;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
-		public List<Servicos> listarTodosServicos() throws Exception{
-		
+	public List<Servico> listarTodosServicos() throws Exception{
 		try {
 			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
@@ -34,7 +54,7 @@ public class ServicosService implements Serializable {
 
 			em.getTransaction().begin();
 			Query query = em.createNamedQuery("SELECT s FROM Servicos s");
-			List<Servicos> listaServicos = query.getResultList();
+			List<Servico> listaServicos = query.getResultList();
 			em.close();
 
 			return listaServicos;
