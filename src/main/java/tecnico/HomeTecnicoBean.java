@@ -21,12 +21,18 @@ public class HomeTecnicoBean implements Serializable{
 	private String paginaAlterarServico = "/pages/usuario/tecnico/alterarServico.xhtml";
 	private String paginaExcluirServico = "/pages/usuario/tecnico/excluirServico.xhtml";
 	private String paginaPerfil = "/pages/usuario/tecnico/editarPerfil.xhtml";
+	private String paginaMeusServicos = "/pages/usuario/tecnico/meusServicos.xhtml";
 
 	public HomeTecnicoBean() { }
 	
 	@PostConstruct
 	public void init() {}
 	
+	
+	public void redirecionarPaginaMeusServicos() throws IOException{
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaMeusServicos);
+	}
 	
 	public void redirecionarPaginaCadastrarServico() throws IOException{
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

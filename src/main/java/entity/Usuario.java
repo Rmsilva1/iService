@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * @author Rafael Mateus
  *	Classe de entidade que representara a model e também as tabelas
- *  para persistencia por JPA
+ *  para persistencia por JPA de Usuarios
  * 8 de abr de 2018
  */
 

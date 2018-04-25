@@ -41,9 +41,7 @@ public class CadastroUsuarioBean implements Serializable{
 	public CadastroUsuarioBean() {}
 
 	@PostConstruct
-	public void init() {
-		usuarioService = new UsuarioService();
-	}
+	public void init() { usuarioService = new UsuarioService(); }
 	
 	public void validarCadastro() throws Exception {
 		if(senha.equals(senhaConfirma)) {

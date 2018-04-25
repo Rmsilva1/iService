@@ -27,7 +27,7 @@
 						<p:outputLabel value="Cpf:" />
 					</div>
 					<div class="align: righ">
-						<p:inputText value="#{cadastroUsuarioBean.cpf}" required="true" />
+						<p:inputText value="#{cadastroUsuarioBean.cpf}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" />
 					</div>
 					<br />
 					<div class="span4">
@@ -59,7 +59,7 @@
 						<p:outputLabel value="telefone:"/>
 					</div>
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.telefone}" required="true" />
+						<p:inputText value="#{cadastroUsuarioBean.telefone}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" />
 					</div>
 					
 					<br/>
@@ -67,7 +67,7 @@
 						<p:outputLabel value="CEP:"/>
 					</div>
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.cep}" required="true" converterMessage="Somente Numeros." />
+						<p:inputText value="#{cadastroUsuarioBean.cep}" required="true" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" converterMessage="Somente Numeros." />
 					</div>
 					
 					<br />

@@ -31,7 +31,7 @@ public class UsuarioService {
 			em.getTransaction().begin();
 			em.persist(usuario);
 			em.getTransaction().commit();
-			entityManagerFactory.close();
+			em.close();
  		
 		}catch (Exception e){
  			e.printStackTrace();
@@ -40,17 +40,19 @@ public class UsuarioService {
 		return true;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Usuario> listarTodosUsuarios() throws Exception{
 		try {
 			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
+
 			em.getTransaction().begin();
 			
 			Query query = em.createNamedQuery("SELECT u FROM Usuario U");
 			List<Usuario> usuarios = query.getResultList();
 
-			entityManagerFactory.close();
+			em.close();
 
 			return usuarios;
 			
@@ -73,9 +75,12 @@ public class UsuarioService {
 
 			Query query = em.createQuery(sql.toString());
 			Integer maiorIdUsuario = (Integer) query.getSingleResult();
+			em.close();
 
-			entityManagerFactory.close();
-			return maiorIdUsuario ++;
+			if(maiorIdUsuario == null)
+				maiorIdUsuario = 0;
+		
+			return maiorIdUsuario++;
 			
 		}catch(Exception e) {
 			e.printStackTrace();
