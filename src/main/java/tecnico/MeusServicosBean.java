@@ -7,7 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import entity.Servicos;
+import entity.Servico;
+
 
 @ViewScoped
 @ManagedBean(name="meusServicosBean")
@@ -15,7 +16,7 @@ public class MeusServicosBean implements Serializable {
 
 	private static final long serialVersionUID = 6579612387254430258L;
 
-	private List<Servicos> listaServicos;
+	private List<Servico> listaServicos;
 	
 	private ServicosService servicosService;
 	
@@ -27,11 +28,20 @@ public class MeusServicosBean implements Serializable {
 		listaServicos = servicosService.listarTodosServicos();
 	}
 
-	public List<Servicos> getListaServicos() {
+	public List<Servico> getListaServicos() {
 		return listaServicos;
 	}
 
-	public void setListaServicos(List<Servicos> listaServicos) {
+	public ServicosService getServicosService() {
+		return servicosService;
+	}
+
+	public void setListaServicos(List<Servico> listaServicos) {
 		this.listaServicos = listaServicos;
 	}
+
+	public void setServicosService(ServicosService servicosService) {
+		this.servicosService = servicosService;
+	}
+
 }
