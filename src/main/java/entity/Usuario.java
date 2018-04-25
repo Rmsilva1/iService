@@ -29,7 +29,9 @@ public class Usuario implements Serializable {
 	@Column(name = "ISTECNICO", nullable = false)
 	private Integer isTecnico;
 	
-	@OneToMany(mappedBy = "Servicos")
+	
+	//TODO FIX
+	@OneToMany(mappedBy = "servico")
 	private Set<Servico> servico;
 	
 	@Column(name = "CPF", nullable = false)
