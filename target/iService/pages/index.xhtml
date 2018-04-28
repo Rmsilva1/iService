@@ -1,13 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-	<h:form>
-	<p:calendar></p:calendar>
-		<div>
-			<p:outputLabel value="#{homeBean.hello}"></p:outputLabel>
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/pages/template.xhtml">
+	<ui:define name="head">
+		<title>iService</title>
+		<h:outputStylesheet name="css/starter-template.css" />
+	</ui:define>
+	<ui:define name="body">
+		<div class="container">
+			<div class="starter-template">
+				<br /> <br /> <br />
+				<p:outputLabel value="Primeiramente, você é um cliente ou tecnico?" />
+				<br /> <br />
+				<p:panelGrid styleClass="margins-debug">
+					<p:row>
+						<h:form>
+							<p:commandButton value="Cliente"
+								action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}" />
+							<p:commandButton style="margin-left: 10px" value="Tecnico"
+								action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}">
+								<f:setPropertyActionListener
+									target="#{cadastroUsuarioBean.isTecnico}" value="#{true}" />
+							</p:commandButton>
+						</h:form>
+					</p:row>
+				</p:panelGrid>
+			</div>
 		</div>
-	</h:form>
-</html>
+	</ui:define>
+</ui:decorate>

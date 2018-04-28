@@ -15,11 +15,11 @@ public class HomeTecnicoBean implements Serializable{
 
 	private static final long serialVersionUID = 5560956621188613430L;
 	
-	private String paginaCadastrarServico = "/pages/usuario/tecnico/cadastrarServico.xhtml";
-	private String paginaAlterarServico = "/pages/usuario/tecnico/alterarServico.xhtml";
-	private String paginaExcluirServico = "/pages/usuario/tecnico/excluirServico.xhtml";
-	private String paginaPerfil = "/pages/usuario/tecnico/editarPerfil.xhtml";
-	private String paginaMeusServicos = "/pages/usuario/tecnico/meusServicos.xhtml";
+	private String paginaCadastrarServico = "/pages/usuario/tecnico/cadastrarServico.jsf";
+	private String paginaAlterarServico = "/pages/usuario/tecnico/alterarServico.jsf";
+	private String paginaExcluirServico = "/pages/usuario/tecnico/excluirServico.jsf";
+	private String paginaPerfil = "/pages/usuario/tecnico/editarPerfil.jsf";
+	private String paginaMeusServicos = "/pages/usuario/tecnico/meusServicos.jsf";
 
 	public HomeTecnicoBean() { }
 	
