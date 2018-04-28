@@ -9,96 +9,63 @@
 	</ui:define>
 	<ui:define name="body">
 		<div class="container">
-			<div class="starter-template">
-				<br /> <br /> <br />
+			<div style="margin-top:5%" class="starter-template">
 				<h:head>
 					<p:outputLabel value="Cadastrar usuario" />
 				</h:head>
 				<br /> <br />
 				<h:form>
-					<div class="span4">
-						<p:outputLabel value="Nome:" />
-					</div>
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+				        <h:selectOneRadio id="selectOne" value="#{cadastroUsuarioBean.isTecnico}">
+				            <f:selectItem itemLabel="Tecnico" itemValue="true" />
+				            <f:selectItem itemLabel="Usuario" itemValue="false" />
+				        </h:selectOneRadio>
+			        </h:panelGrid>
+			
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.nome}" required="true" />
+						<p:inputText placeholder="Nome" value="#{cadastroUsuarioBean.nome}" required="true" />
 					</div>
 					<br />
-					<div class="span4">
-						<p:outputLabel value="Cpf:" />
-					</div>
 					<div class="align: righ">
-						<p:inputText value="#{cadastroUsuarioBean.cpf}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" />
+						<p:inputMask id="cpf" placeholder="CPF" mask="999.999.999-99" 
+							size="20" value="#{cadastroUsuarioBean.cpf}" required="true"/>
 					</div>
 					<br />
-					<div class="span4">
-						<p:outputLabel value="Email:" />
-					</div>
-
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.email}" required="true" />
+						<p:inputText placeholder="Email" value="#{cadastroUsuarioBean.email}" required="true" />
 					</div>
 					<br />
-
-					<div class="span4">
-						<p:outputLabel value="Senha:" />
-					</div>
-					<p:password id="pwd1" value="#{cadastroUsuarioBean.senha}"
+					<p:password placeholder="Senha" id="pwd1" value="#{cadastroUsuarioBean.senha}"
 						label="Senha" required="true" />
 					<br />
-
-					<div class="span4">
-						<p:outputLabel value="Senha Confirmação:" />
-					</div>
 					<div>
-						<p:password id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}"
+						<p:password style="margin-top: 2%" placeholder="ConfirmaSenha" id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}"
 							label="Senha 2" />
 					</div>
-					
 					<br/>
-					<div class="span4">
-						<p:outputLabel value="telefone:"/>
-					</div>
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.telefone}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" />
+						<p:inputMask placeholder="Telefone" mask="(99)99999-9999" value="#{cadastroUsuarioBean.telefone}"  required="true" converterMessage="Somente Numeros." />
 					</div>
-					
 					<br/>
-					<div class="span4">
-						<p:outputLabel value="CEP:"/>
-					</div>
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.cep}" required="true" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" converterMessage="Somente Numeros." />
+						<p:inputMask id="cep" mask="99999-999" placeholder="CEP" size="20" value="#{cadastroUsuarioBean.cep}" required="true" />
 					</div>
-					
 					<br />
-					<div class="span4">
-						<p:outputLabel value="Estado:" />
-					</div>
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.estado}" required="true" />
+						<p:inputText placeholder="Estado" value="#{cadastroUsuarioBean.estado}" required="true" />
 					</div>
-
 					<br />
-					<div class="span4">
-						<p:outputLabel value="Cidade: " />
-					</div>
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.cidade}" required="true" />
+						<p:inputText placeholder="Cidade" value="#{cadastroUsuarioBean.cidade}" required="true" />
 					</div>
-
-					<br />
-					<div class="span4">
-						<p:outputLabel value="Bairro: " />
-					</div>
+					<br/>
 					<div class="align: right">
-						<p:inputText value="#{cadastroUsuarioBean.bairro}" required="true" />
+						<p:inputText placeholder="Bairro" value="#{cadastroUsuarioBean.bairro}" required="true" />
 					</div>
-
 					<br />
 					<p:commandButton value="Voltar"
-						url="http://localhost:9999/iService/pages/index.xhtml" />
-					<p:commandButton value="Cadastrar" style="margin-left: 2%"
-						action="#{cadastroUsuarioBean.validarCadastro()}" />
+						url="http://localhost:9999/iService/pages/index.jsf" />
+					<p:commandButton value="Cadastrar" style="margin-left: 2%" action="#{cadastroUsuarioBean.validarCadastro()}" />
 				</h:form>
 			</div>
 		</div>

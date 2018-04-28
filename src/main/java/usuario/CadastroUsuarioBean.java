@@ -18,8 +18,8 @@ public class CadastroUsuarioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
-	private String paginaHomeTecnico = "/iService/pages/usuario/tecnico/homeTecnico.xhtml";
+	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.jsf";
+	private String paginaHomeTecnico = "/iService/pages/usuario/tecnico/homeTecnico.jsf";
 	
 	private UsuarioRetorno usuarioRetorno;
 	private UsuarioService usuarioService;
@@ -33,41 +33,50 @@ public class CadastroUsuarioBean implements Serializable{
 	private String telefone;
 	private String estado;
 	private String cidade;
-	private Double cep;
+	private String cep;
 	private String bairro;
 	private String rua;
+	private Integer numero;
 	private String complemento;
 	
 	public CadastroUsuarioBean() {}
 
 	@PostConstruct
-	public void init() { usuarioService = new UsuarioService(); }
+	public void init() { 
+		usuarioService = new UsuarioService(); 
+	}
 	
 	public void validarCadastro() throws Exception {
 		if(senha.equals(senhaConfirma)) {
 			cadastrar();
 		}else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "As senhas devem ser iguais."));
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "As senhas devem ser iguais."));
 		}
 	}
 
 	public void cadastrar() throws Exception {
- 		Usuario usuarioPersistir = new Usuario();
- 		usuarioPersistir.setId(usuarioService.consultarMaiorIdUsuario());
-		usuarioPersistir.setIsTecnico(isTecnico == true ? 1 : 0);
-		usuarioPersistir.setCpf(cpf);
-		usuarioPersistir.setEmail(email); 
-		usuarioPersistir.setSenha(senha);
-		usuarioPersistir.setNome(nome);
-		usuarioPersistir.setTelefone(telefone);
-		usuarioPersistir.setEstado(estado);
-		usuarioPersistir.setCidade(cidade);
-		usuarioPersistir.setCep(cep);
-		usuarioPersistir.setBairro(bairro);
-		usuarioPersistir.setRua(rua);
-		usuarioPersistir.setComplemento(complemento);
+		Usuario usuarioPersistir = montarUsuario();
 		if(usuarioService.cadastrarUsuario(usuarioPersistir));
 			redirecionarPaginaHomeTecnico();
+	}
+	
+	public Usuario montarUsuario() throws Exception {
+		Usuario usuario = new Usuario();
+ 		usuario.setId(usuarioService.consultarMaiorIdUsuario());
+		usuario.setIsTecnico(isTecnico.equals(Boolean.TRUE) ? 1 : 0);
+		usuario.setCpf(cpf);
+		usuario.setEmail(email.toLowerCase()); 
+		usuario.setSenha(senha);
+		usuario.setNome(nome);
+		usuario.setTelefone(telefone);
+		usuario.setEstado(estado);
+		usuario.setCidade(cidade);
+		usuario.setCep(cep);
+		usuario.setBairro(bairro);
+		usuario.setRua(rua);
+		usuario.setComplemento(complemento);
+		return usuario;
 	}
 	
 	public String voltar() {
@@ -181,11 +190,11 @@ public class CadastroUsuarioBean implements Serializable{
 		this.paginaCadastrarUsuario = paginaCadastrarUsuario;
 	}
 
-	public Double getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Double cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -203,5 +212,13 @@ public class CadastroUsuarioBean implements Serializable{
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 }

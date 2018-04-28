@@ -29,7 +29,6 @@ public class Usuario implements Serializable {
 	@Column(name = "ISTECNICO", nullable = false)
 	private Integer isTecnico;
 	
-	
 	//TODO FIX
 	@OneToMany(mappedBy = "servico")
 	private Set<Servico> servico;
@@ -56,7 +55,7 @@ public class Usuario implements Serializable {
 	private String cidade;
 	
 	@Column(name = "CEP")
-	private Double cep;
+	private String cep;
 
 	@Column(name = "BAIRRO")
 	private String bairro;
@@ -165,11 +164,11 @@ public class Usuario implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public Double getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Double cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

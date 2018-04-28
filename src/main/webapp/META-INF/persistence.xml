@@ -9,7 +9,7 @@
    		<exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>
-            <property name="hibernate.connection.url" value="jdbc:oracle:thin:iService/iService@RB-LAB102B-019.Academico.edu:1521:XE"/>
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:iService/iService@DESKTOP-1O2B4BC:1521:XE"/>
             <property name="hibernate.connection.autocommit" value="false"/>
             <property name="hibernate.connection.username" value="iService"/>
             <property name="hibernate.connection.password" value="iService"/>

@@ -9,12 +9,11 @@
  </servlet>
  <servlet-mapping>
   <servlet-name>Faces Servlet</servlet-name>
-  <url-pattern>*.xhtml</url-pattern>
   <url-pattern>*.jsf</url-pattern>
   <url-pattern>/javax.faces.resource/*</url-pattern>
  </servlet-mapping>
  <welcome-file-list>
-  <welcome-file>/pages/index.xhtml</welcome-file>
+  <welcome-file>/pages/index.jsf</welcome-file>
  </welcome-file-list>
  <mime-mapping>
       <extension>ttf</extension>
