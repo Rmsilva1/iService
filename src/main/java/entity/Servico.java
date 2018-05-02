@@ -1,14 +1,15 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 /**
  * @author Rafael Mateus
@@ -27,15 +28,11 @@ public class Servico implements Serializable {
 	@Column(name = "ID_SERVICO", unique = true, nullable = false)
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name="FK_TECNICO", nullable = false)
-	private Usuario usuario;
+	@OneToMany(mappedBy = "idUsuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Usuario> idUsuario;
 	
 	@Column(name = "FK_CATEGORIA", unique = true, nullable = false)
 	private Integer fkCategoria;
-	
-	@Column(name = "ISATIVO", unique = true, nullable = false)
-	private Integer isAtivo;
 	
 	@Column(name = "DESCRICAO", unique = true, nullable = false)
 	private String descricao;
@@ -53,9 +50,6 @@ public class Servico implements Serializable {
 		return fkCategoria;
 	}
 
-	public Integer getIsAtivo() {
-		return isAtivo;
-	}
 
 	public String getDescricao() {
 		return descricao;
@@ -69,13 +63,8 @@ public class Servico implements Serializable {
 		this.id = id;
 	}
 
-
 	public void setFkCategoria(Integer fkCategoria) {
 		this.fkCategoria = fkCategoria;
-	}
-
-	public void setIsAtivo(Integer isAtivo) {
-		this.isAtivo = isAtivo;
 	}
 
 	public void setDescricao(String descricao) {
@@ -86,11 +75,12 @@ public class Servico implements Serializable {
 		this.preco = preco;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Set<Usuario> getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setIdUsuario(Set<Usuario> idUsuario) {
+		this.idUsuario = idUsuario;
 	}
+
 }

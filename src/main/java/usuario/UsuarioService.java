@@ -71,7 +71,7 @@ public class UsuarioService {
 			em.getTransaction().begin();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT MAX(id) FROM Usuario U");
+			sql.append("SELECT MAX(idUsuario) FROM Usuario U");
 
 			Query query = em.createQuery(sql.toString());
 			Integer maiorIdUsuario = (Integer) query.getSingleResult();

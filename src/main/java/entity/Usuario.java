@@ -1,38 +1,34 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 /**
- * @author Rafael Mateus
- *	Classe de entidade que representara a model e também as tabelas
- *  para persistencia por JPA de Usuarios
- * 8 de abr de 2018
+ * @author Rafael Mateus Classe de entidade que representara a model e também as
+ *         tabelas para persistencia por JPA de Usuarios 8 de abr de 2018
  */
 
 @Entity
 @Table(name = "USUARIOS")
 public class Usuario implements Serializable {
-	
+
 	private static final long serialVersionUID = 4683554548002572431L;
 
 	@Id
 	@Column(name = "ID_USUARIO", unique = true, nullable = false)
-	private Integer id;
-	
+	private Integer idUsuario;
+
 	@Column(name = "ISTECNICO", nullable = false)
 	private Integer isTecnico;
-	
-	//TODO FIX
-	@OneToMany(mappedBy = "servico")
-	private Set<Servico> servico;
-	
+
+//    @JoinColumn(name="FK_TECNICO", nullable = false)
+//	private Servico servico;
+
 	@Column(name = "CPF", nullable = false)
 	private String cpf;
 
@@ -53,7 +49,7 @@ public class Usuario implements Serializable {
 
 	@Column(name = "CIDADE", nullable = false)
 	private String cidade;
-	
+
 	@Column(name = "CEP")
 	private String cep;
 
@@ -62,18 +58,19 @@ public class Usuario implements Serializable {
 
 	@Column(name = "RUA")
 	private String rua;
-	
+
 	@Column(name = "COMPLEMENTO")
 	private String complemento;
-	
-	public Usuario() {}
 
-	public Integer getId() {
-		return id;
+	public Usuario() {
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Integer id) {
+		this.idUsuario = id;
 	}
 
 	public Integer getIsTecnico() {
@@ -172,16 +169,11 @@ public class Usuario implements Serializable {
 		this.cep = cep;
 	}
 
-	public Set<Servico> getServico() {
-		return servico;
-	}
-
-	public void setServicos(Set<Servico> servico) {
-		this.servico = servico;
-	}
-
-	public void setServico(Set<Servico> servico) {
-		this.servico = servico;
-	}
-
+//	public Servico getServico() {
+//		return servico;
+//	}
+//
+//	public void setServicos(Servico servico) {
+//		this.servico = servico;
+//	}
 }

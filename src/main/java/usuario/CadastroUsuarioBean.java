@@ -63,7 +63,7 @@ public class CadastroUsuarioBean implements Serializable{
 	
 	public Usuario montarUsuario() throws Exception {
 		Usuario usuario = new Usuario();
- 		usuario.setId(usuarioService.consultarMaiorIdUsuario());
+ 		usuario.setIdUsuario(usuarioService.consultarMaiorIdUsuario());
 		usuario.setIsTecnico(isTecnico.equals(Boolean.TRUE) ? 1 : 0);
 		usuario.setCpf(cpf);
 		usuario.setEmail(email.toLowerCase()); 
