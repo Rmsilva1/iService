@@ -16,6 +16,7 @@ CONNECT iService/iService
 
 CREATE TABLE Usuarios (
     id_usuario INTEGER NOT NULL CONSTRAINT USUARIO_PK PRIMARY KEY,
+    permissionLevel INTEGER NOT NULL,
     isTecnico INTEGER NOT NULL,
     cpf VARCHAR(14) NOT NULL,
     Email VARCHAR(64) NOT NULL,
