@@ -16,6 +16,10 @@
 				</h:head>
 				<br /> <br />
 				<h:form>
+					<h:selectOneMenu id="console"  style="width:125px">
+			            <f:selectItem itemLabel="Selecione Uma Categoria" itemValue="" />
+			            <f:selectItems/>
+        			</h:selectOneMenu>
 					<div class="span4">
 						<p:outputLabel value="Descricao do Serviço: " />
 					</div>
@@ -45,6 +49,8 @@
 					<p:inputText id="pwd1" value="#{cadastrarServicoBean.preco}"
 						label="Senha" required="true" />
 					<br />
+					<br />
+					<p:commandButton value="Cadastrar" action="#{cadastrarServicoBean.cadastrarServico()}" />
 				</h:form>
 			</div>
 		</div>

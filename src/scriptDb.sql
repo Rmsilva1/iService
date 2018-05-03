@@ -31,17 +31,31 @@ CREATE TABLE Usuarios (
 
 ) TABLESPACE iService;
 
+
+CREATE TABLE CATEGORIA (
+    ID_Categoria INTEGER NOT NULL CONSTRAINT CATEGORIA_PK PRIMARY KEY,
+    Descricao NVARCHAR2(255)
+    );
+    
 CREATE TABLE SERVICOS (
     ID_Servico INTEGER NOT NULL CONSTRAINT SERVICO_PK PRIMARY KEY,
     ID_Usuario INTEGER NOT NULL,
-    FK_Categoria INTEGER NOT NULL,
+    ID_Categoria INTEGER NOT NULL,
     Descricao NVARCHAR2(255),
     Preco NUMBER(8,2),   
-    CONSTRAINT FK_Usuario FOREIGN KEY(ID_Usuario) REFERENCES USUARIOS(ID_USUARIO));
+    CONSTRAINT FK_Usuario FOREIGN KEY(ID_Usuario) REFERENCES USUARIOS(ID_USUARIO),
+    CONSTRAINT FK_Categoria FOREIGN KEY(ID_Categoria) REFERENCES CATEGORIA(ID_CATEGORIA)
+    );
+    
+    
+insert into categoria(id_categoria, descricao) values (1, 'Encanador');
+insert into categoria(id_categoria, descricao) values (2, 'Eletricista');
+insert into categoria(id_categoria, descricao) values (3, 'Piscineiro');
+insert into categoria(id_categoria, descricao) values (4, 'Detetizador');
 
-
-drop table SERVICOS;
-drop table Usuarios;
+drop table servicos;   
+drop table categoria;    
+drop table usuarios;
     
 CREATE SEQUENCE USUARIO_SEQ
 START WITH 1

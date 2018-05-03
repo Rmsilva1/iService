@@ -1,12 +1,15 @@
 package tecnico;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import entity.Categoria;
 import entity.Servico;
 import entity.Usuario;
 import usuario.UsuarioService;
@@ -18,7 +21,8 @@ public class CadastrarServicoBean implements Serializable{
 	private static final long serialVersionUID = -1408378481813093379L;
 	
 	private String descricao;
-	private Integer categoria;
+	private List<Categoria> listaCategorias;
+	private Categoria categoria;
 	private Double preco;
 	private Boolean isAtivo = false;
 	private List<Usuario> listaUsuarios;
@@ -32,15 +36,14 @@ public class CadastrarServicoBean implements Serializable{
 	public void init() throws Exception {
 		servicoService = new ServicosService();
 		usuarioService = new UsuarioService();
-		
-		listaUsuarios = usuarioService.listarTodosUsuarios();
+		listaCategorias = servicoService.listarTodasCategorias();
+//		listaUsuarios = usuarioService.listarTodosUsuarios();
 	}
 
-	//TODO cadastrar servico para usuario especifico selecionado pelo cliente.
 	public void cadastrarServico() throws Exception{
 		Servico servicoCadastrar = new Servico();
-		//servicoCadastrar.setUsuario(usuario);
-
+		servicoCadastrar.setDescricao(descricao);
+		servicoCadastrar.setIdCategoria(categoria);
 		servicoService.cadastrarServico(servicoCadastrar);
 	}
 	
@@ -85,14 +88,6 @@ public class CadastrarServicoBean implements Serializable{
 		this.servicoService = servicoService;
 	}
 
-	public Integer getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Integer categoria) {
-		this.categoria = categoria;
-	}
-
 	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
@@ -107,5 +102,21 @@ public class CadastrarServicoBean implements Serializable{
 
 	public void setUsuarioService(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
+	}
+
+	public List<Categoria> getListaCategorias() {
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(List<Categoria> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 }

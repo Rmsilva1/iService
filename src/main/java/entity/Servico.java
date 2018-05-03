@@ -26,13 +26,13 @@ public class Servico implements Serializable {
 
 	@Id
 	@Column(name = "ID_SERVICO", unique = true, nullable = false)
-	private Integer id;
+	private Integer idServico;
 	
 	@OneToMany(mappedBy = "idUsuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Usuario> idUsuario;
 	
-	@Column(name = "FK_CATEGORIA", unique = true, nullable = false)
-	private Integer fkCategoria;
+	@Column(name = "id_Categoria", unique = true, nullable = false)
+	private Categoria idCategoria;
 	
 	@Column(name = "DESCRICAO", unique = true, nullable = false)
 	private String descricao;
@@ -41,38 +41,13 @@ public class Servico implements Serializable {
 	private String preco;
 
 	public Servico() {}
-	
-	public Integer getId() {
-		return id;
+
+	public Integer getIdServico() {
+		return idServico;
 	}
 
-	public Integer getFkCategoria() {
-		return fkCategoria;
-	}
-
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public String getPreco() {
-		return preco;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public void setFkCategoria(Integer fkCategoria) {
-		this.fkCategoria = fkCategoria;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public void setPreco(String preco) {
-		this.preco = preco;
+	public void setIdServico(Integer idServico) {
+		this.idServico = idServico;
 	}
 
 	public Set<Usuario> getIdUsuario() {
@@ -81,6 +56,30 @@ public class Servico implements Serializable {
 
 	public void setIdUsuario(Set<Usuario> idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+
+	public Categoria getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(Categoria idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getPreco() {
+		return preco;
+	}
+
+	public void setPreco(String preco) {
+		this.preco = preco;
 	}
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import entity.Categoria;
 import entity.Servico;
 
 /**
@@ -58,6 +59,31 @@ public class ServicosService implements Serializable {
 			em.close();
 
 			return listaServicos;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<Categoria> listarTodasCategorias() throws Exception{
+		try {
+			
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+
+			em.getTransaction().begin();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT c FROM Categoria c");
+			
+			Query query = em.createQuery(sql.toString());
+			
+			List<Categoria> listaCategorias = query.getResultList();
+			em.close();
+			return listaCategorias;
 			
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
 	@Column(name = "ISTECNICO", nullable = false)
 	private Integer isTecnico;
 
-//    @JoinColumn(name="FK_TECNICO", nullable = false)
+//  @JoinColumn(name="FK_TECNICO", nullable = false)
 //	private Servico servico;
 
 	@Column(name = "CPF", nullable = false)

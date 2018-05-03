@@ -6,6 +6,7 @@
     <persistence-unit name="org.iservice.jpa">
    		<class>entity.Usuario</class>
    		<class>entity.Servico</class>
+  		<class>entity.Categoria</class>
    		<exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>
