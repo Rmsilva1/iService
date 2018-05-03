@@ -91,7 +91,6 @@ public class CadastroUsuarioBean implements Serializable{
 	public void redirecionarPaginaHomeTecnico() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().redirect(paginaHomeTecnico);
-		
 	}
 
 	public Boolean getIsTecnico() {

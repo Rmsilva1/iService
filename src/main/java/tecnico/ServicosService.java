@@ -70,7 +70,6 @@ public class ServicosService implements Serializable {
 	@Transactional
 	public List<Categoria> listarTodasCategorias() throws Exception{
 		try {
-			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
 

@@ -1,13 +1,13 @@
 package tecnico;
 
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import entity.Categoria;
 import entity.Servico;
@@ -19,6 +19,8 @@ import usuario.UsuarioService;
 public class CadastrarServicoBean implements Serializable{
 
 	private static final long serialVersionUID = -1408378481813093379L;
+	
+	private String paginaHomeTecnico = "/iService/pages/usuario/tecnico/homeTecnico.jsf";
 	
 	private String descricao;
 	private List<Categoria> listaCategorias;
@@ -45,6 +47,11 @@ public class CadastrarServicoBean implements Serializable{
 		servicoCadastrar.setDescricao(descricao);
 		servicoCadastrar.setIdCategoria(categoria);
 		servicoService.cadastrarServico(servicoCadastrar);
+	}
+	
+	public void redirecionarPaginaHomeTecnico() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().redirect(paginaHomeTecnico);
 	}
 	
 	
