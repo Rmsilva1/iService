@@ -40,8 +40,8 @@ CREATE TABLE Servicos (
     ID_Categoria INTEGER NOT NULL,
     Descricao VARCHAR2(64),
     Preco NUMBER(8,2),   
-    CONSTRAINT FK_Usuario FOREIGN KEY(ID_Usuario) REFERENCES USUARIOS(ID_USUARIO),
-    CONSTRAINT FK_Categoria FOREIGN KEY(ID_Categoria) REFERENCES CATEGORIA(ID_CATEGORIA));
+    CONSTRAINT FK_Usuario FOREIGN KEY(ID_Usuario) REFERENCES Usuarios(id_usuario),
+    CONSTRAINT FK_Categoria FOREIGN KEY(ID_Categoria) REFERENCES Categorias_Servicos(ID_CATEGORIA));
 	
 CREATE TABLE Endereco2 (
 	ID_Endereco INTEGER NOT NULL CONSTRAINT ENDERECO_PK PRIMARY KEY,
@@ -64,13 +64,14 @@ CREATE TABLE Avaliacoes (
 CREATE TABLE Servicos_Finalizados (
 	ID_Servico_Finalizado INTEGER NOT NULL CONSTRAINT SERVICO_FINALIZADO_PK PRIMARY KEY,
 	ID_Servico INTEGER NOT NULL,
+	ID_Categoria INTEGER NOT NULL,
 	ID_NOTA INTEGER NOT NULL,
 	DataFinalizacao TIMESTAMP,
 	ID_USUARIO_CONTRATANTE INTEGER NOT NULL,
 	ID_TECNICO_FORNECEDOR INTEGER NOT NULL,
-    CONSTRAINT FK_SERVICO FOREIGN KEY(ID_Servico) REFERENCES SERVICOS(ID_Servico),
+    CONSTRAINT FK_Servico_Finalizado FOREIGN KEY(ID_Servico) REFERENCES SERVICOS(ID_Servico),
 	CONSTRAINT FK_NOTA FOREIGN KEY(ID_NOTA) REFERENCES AVALIACOES(ID_AVALIACAO),
-    CONSTRAINT FK_Categoria FOREIGN KEY(ID_Categoria) REFERENCES CATEGORIA(ID_CATEGORIA));
+    CONSTRAINT FK_Categoria_Finalizada FOREIGN KEY(ID_Categoria) REFERENCES Categorias_Servicos(ID_CATEGORIA));
 
 --Tabela de pedidos ativos que ira referenciar o tecnico contratado atraves do servico contratado.	
 CREATE TABLE Pedidos (
@@ -80,31 +81,35 @@ CREATE TABLE Pedidos (
 	ID_Nota INTEGER NOT NULL,
 	Data_Solicitacao timestamp,
 	Data_Finalizacao timestamp,
-    CONSTRAINT FK_SERVICO FOREIGN KEY(ID_Servico) REFERENCES SERVICOS(ID_Servico),
+    CONSTRAINT FK_PEDIDO_SERVICO FOREIGN KEY(ID_Servico) REFERENCES SERVICOS(ID_Servico),
 	CONSTRAINT FK_USUARIO_SOLICITANTE FOREIGN KEY(ID_USUARIO_SOLICITANTE) REFERENCES USUARIOS(ID_USUARIO));
 
+
+CREATE SEQUENCE USUARIO_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE SERVICO_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE CATEGORIAS_SEQ
+START WITH 1
+INCREMENT BY 1;
        
-insert into categoria(id_categoria, descricao) values (1, 'Encanador');
-insert into categoria(id_categoria, descricao) values (2, 'Eletricista');
-insert into categoria(id_categoria, descricao) values (3, 'Piscineiro');
-insert into categoria(id_categoria, descricao) values (4, 'Detetizador');
 
-
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Chaveiro');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Detetizador');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Desentupidor');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Eletricista');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Encanador');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Jardineiro');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Pedreiro');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Piscineiro');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Vidraceiro');
+INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Terraplanista');
+	
 COMMIT;
-
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Chaveiro');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Detetizador');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Desentupidor');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Eletricista');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Encanador');
-
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Jardineiro');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Pedreiro');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Piscineiro');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Vidraceiro');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Terraplanista');
-
-
 
 ------------------------------------PROCEDURES------------------------------------
 CREATE OR REPLACE PROCEDURE GET_TOTAL_USUARIOS
@@ -187,19 +192,3 @@ END Get_QuantidadeDeEstados;
 drop table servicos;   
 drop table categoria;    
 drop table usuarios;
-    
-CREATE SEQUENCE ESPECIALIDADE_SEQ
-START WITH 1
-INCREMENT BY 1;	
-	
-CREATE SEQUENCE USUARIO_SEQ
-START WITH 1
-INCREMENT BY 1;
-
-CREATE SEQUENCE SERVICO_SEQ
-START WITH 1
-INCREMENT BY 1;
-
-CREATE SEQUENCE CATEGORIA_SEQ
-START WITH 1
-INCREMENT BY 1;
