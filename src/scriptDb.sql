@@ -98,6 +98,8 @@ START WITH 1
 INCREMENT BY 1;
        
 
+--------------------------------MASSAS-----------------------------------------------------------------
+
 INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Chaveiro');
 INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Detetizador');
 INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Desentupidor');
@@ -108,7 +110,26 @@ INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.
 INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Piscineiro');
 INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Vidraceiro');
 INSERT INTO Categorias_Servicos(id_categoria, descricao) VALUES (CATEGORIAS_SEQ.NEXTVAL,'Terraplanista');
-	
+
+
+insert into usuarios(ID_USUARIO, PERMISSIONLEVEL, ISTECNICO, CPF, EMAIL, SENHA, NOME, TELEFONE, ESTADO, CIDADE, CEP, BAIRRO, RUA,
+COMPLEMENTO) VALUES(1,1,1,'00000000000', 'rafael@hotmail.com', '123456', 'Rafael Mateus', '123456789', 'Parana', 'Curitiba', 'TESTE', 'TESTE', 'TESTE','TESTE');
+
+insert into usuarios(ID_USUARIO, PERMISSIONLEVEL, ISTECNICO, CPF, EMAIL, SENHA, NOME, TELEFONE, ESTADO, CIDADE, CEP, BAIRRO, RUA,
+COMPLEMENTO) VALUES(2,1,1,'00000000000', 'joao@hotmail.com', '56465464', 'Joao Pedro', '123456789', 'Parana', 'Guaratuba', 'TESTE', 'TESTE', 'TESTE','TESTE');
+
+insert into usuarios(ID_USUARIO, PERMISSIONLEVEL, ISTECNICO, CPF, EMAIL, SENHA, NOME, TELEFONE, ESTADO, CIDADE, CEP, BAIRRO, RUA,
+COMPLEMENTO) VALUES(3,1,1,'00000000000', 'thanos@hotmail.com', '123456', 'Thanos', '123456789', 'Parana', 'Matinhos', 'TESTE', 'TESTE', 'TESTE','TESTE');
+
+insert into usuarios(ID_USUARIO, PERMISSIONLEVEL, ISTECNICO, CPF, EMAIL, SENHA, NOME, TELEFONE, ESTADO, CIDADE, CEP, BAIRRO, RUA,
+COMPLEMENTO) VALUES(4,1,1,'00000000000', 'Maria@hotmail.com', '123456', 'Maria da Massa', '123456789', 'Parana', 'Curitiba', 'TESTE', 'TESTE', 'TESTE','TESTE');
+
+insert into usuarios(ID_USUARIO, PERMISSIONLEVEL, ISTECNICO, CPF, EMAIL, SENHA, NOME, TELEFONE, ESTADO, CIDADE, CEP, BAIRRO, RUA,
+COMPLEMENTO) VALUES(5,1,1,'00000000000', 'jhonny@hotmail.com', '123456', 'Jhonny test', '123456789', 'Parana', 'Sao Jose', 'TESTE', 'TESTE', 'TESTE','TESTE');
+
+insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
+(1, 1, 1, 'Terraplanagem de terros grandes', 850.00);
+
 COMMIT;
 
 ------------------------------------PROCEDURES------------------------------------
