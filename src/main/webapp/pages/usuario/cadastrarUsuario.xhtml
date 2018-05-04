@@ -16,9 +16,11 @@
 				<br /> <br />
 				<h:form>
 					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-				        <h:selectOneRadio id="selectOne" value="#{cadastroUsuarioBean.isTecnico}">
-				            <f:selectItem itemLabel="Tecnico" itemValue="true" />
-				            <f:selectItem itemLabel="Usuario" itemValue="false" />
+						<h:outputText value="Irá atuar como Tecnico?"/>
+						<br/>
+						<h:selectOneRadio id="selectOne" value="#{cadastroUsuarioBean.isTecnico}">
+				            <f:selectItem itemLabel="Sim" itemValue="true" />
+				            <f:selectItem itemLabel="Não" itemValue="false" />
 				        </h:selectOneRadio>
 			        </h:panelGrid>
 			

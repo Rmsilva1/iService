@@ -1,5 +1,6 @@
 package usuario;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Named;
@@ -9,6 +10,8 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.hibernate.HibernateException;
+
 import entity.Usuario;
 
 /**
@@ -16,7 +19,6 @@ import entity.Usuario;
  *	Classe responsavel pela persistencia dos dados do Usuario.
  *  8 de abr de 2018
  */
-
 @Named
 public class UsuarioService {
 	public UsuarioService() {}
@@ -24,7 +26,6 @@ public class UsuarioService {
 	@Transactional
 	public Boolean cadastrarUsuario(Usuario usuario) {
 		try{
-			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
 			
@@ -43,7 +44,6 @@ public class UsuarioService {
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listarTodosUsuarios() throws Exception{
 		try {
-			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
 
@@ -88,6 +88,45 @@ public class UsuarioService {
 		}
 	}
 	
+	public void editarUsuarioCompleto(Usuario usuario) throws Exception{
+		try {
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+			em.getTransaction().begin();
+			
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("UPDATE Usuario");
+			sql.append("SET cpf = :cpf, ");
+			sql.append("email = :email, ");
+			sql.append("nome = :nome,");
+			sql.append("estado = :estado, ");
+			sql.append("cidade = :cidade, ");
+			sql.append("cep = :cep, ");
+			sql.append("bairro = :bairro, ");
+			sql.append("rua = :rua, ");
+			sql.append("complemento = :complemento ");
+			sql.append("WHERE idUsuario = :idUsuario ");
+			
+			Query query = em.createQuery(sql.toString());
+			
+			query.setParameter("cpf", usuario.getCpf());
+			query.setParameter("email", usuario.getEmail());
+			query.setParameter("nome", usuario.getNome());
+			query.setParameter("estado", usuario.getEstado());
+			query.setParameter("cep", usuario.getCep());
+			query.setParameter("cidade", usuario.getCidade());
+			query.setParameter("bairro", usuario.getBairro());
+			query.setParameter("rua", usuario.getRua());
+			query.setParameter("complemento", usuario.getComplemento());
+			query.setParameter("idUsuario", usuario.getIdUsuario());
+
+			entityManagerFactory.close();
+		}catch(HibernateException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void apagarUsuario(Integer id) throws Exception{
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
@@ -103,7 +142,6 @@ public class UsuarioService {
 			
 			query.setParameter("idUsuario", id);
 			entityManagerFactory.close();
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

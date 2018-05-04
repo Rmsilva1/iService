@@ -7,4 +7,8 @@
 	<application>  
 	    <resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>
 	</application>
+	<converter>  
+    	<converter-id>booleanConverter</converter-id>  
+    	<converter-class>javax.faces.convert.BooleanConverter</converter-class>  
+	</converter>
 </faces-config>

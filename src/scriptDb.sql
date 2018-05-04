@@ -43,7 +43,7 @@ CREATE TABLE Servicos (
     CONSTRAINT FK_Usuario FOREIGN KEY(ID_Usuario) REFERENCES USUARIOS(ID_USUARIO),
     CONSTRAINT FK_Categoria FOREIGN KEY(ID_Categoria) REFERENCES CATEGORIA(ID_CATEGORIA));
 	
-CREATE TABLE Endereco (
+CREATE TABLE Endereco2 (
 	ID_Endereco INTEGER NOT NULL CONSTRAINT ENDERECO_PK PRIMARY KEY,
 	ID_Usuario INTEGER NOT NULL,
 	Estado VARCHAR2(64),
@@ -102,72 +102,71 @@ INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NE
 INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Pedreiro');
 INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Piscineiro');
 INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Vidraceiro');
-INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Terraplanagem');
+INSERT INTO ESPECIALIDADE (id_categoria, descricao) VALUES (ESPECIALIDADE_SEQ.NEXTVAL,'Terraplanista');
 
 
 
 ------------------------------------PROCEDURES------------------------------------
---CREATE OR REPLACE PROCEDURE GET_TOTAL_USUARIOS
---IS
---  var_totalUsuarios NUMBER(20);
---BEGIN
+CREATE OR REPLACE PROCEDURE GET_TOTAL_USUARIOS
+IS
+  var_totalUsuarios NUMBER(20);
+BEGIN
 
---SELECT count(ID_USUARIO)
---INTO var_totalUsuarios
+SELECT count(ID_USUARIO)
+INTO var_totalUsuarios
 
---FROM iservice.USUARIOS;
---  DBMS_OUTPUT.PUT_LINE('A quantidade total de usuarios é de ' ||var_totalUsuarios|| ' Usuarios.');
---END GET_TOTAL_USUARIOS;
---/
+FROM iservice.USUARIOS;
+  DBMS_OUTPUT.PUT_LINE('A quantidade total de usuarios é de ' ||var_totalUsuarios|| ' Usuarios.');
+END GET_TOTAL_USUARIOS;
+/
 
---CREATE OR REPLACE PROCEDURE GET_SERVICO_MAIS_CARO
---IS
---  var_nomeServico varchar(255);
---  var_precoServico NUMBER(8,2)
-  
---BEGIN
+CREATE OR REPLACE PROCEDURE GET_SERVICO_MAIS_CAROS
+IS
+  var_nomeServico varchar(255);
+  var_precoServico NUMBER(8,2)
+BEGIN
 
---SELECT Descricao, max(Preco)
---INTO var_nomeServico, var_precoServico
+SELECT Descricao, max(Preco)
+INTO var_nomeServico, var_precoServico
 
---FROM iservice.SERVICOS;
+FROM iservice.SERVICOS;
 
---  DBMS_OUTPUT.PUT_LINE('O servico mais caro é o ' ||var_nomeServico|| ' Com o valor de ' || 'R$ ' ||var_precoServico '.');
+  DBMS_OUTPUT.PUT_LINE('O servico mais caro é o ' ||var_nomeServico|| ' Com o valor de ' || 'R$ ' ||var_precoServico '.');
 
---END GET_SERVICO_MAIS_CARO;
---/
+END GET_SERVICO_MAIS_CARO;
+/
 
---CREATE OR REPLACE PROCEDURE GET_ESTADO_COM_MAIOR_NUMERO_TECNICOS
---IS
---  var_estado VARCHAR(32);
---  count_tecnicos NUMBER;
---BEGIN
+CREATE OR REPLACE PROCEDURE GET_ESTADO_COM_MAIOR_NUMERO_TECNICOS
+IS
+  var_estado VARCHAR(32);
+  count_tecnicos INTEGER;
+BEGIN
 
---SELECT count(codigo_estado)
---INTO var_estado
+SELECT count(codigo_estado)
+INTO var_estado
 
---FROM projeto_iservice.estado;
+FROM projeto_iservice.estado;
 
---  DBMS_OUTPUT.PUT_LINE('O Estado com maior numero de tecnicos é o ' ||var_estado|| ' com' || count_tecnicos || ' tecnicos.');
+  DBMS_OUTPUT.PUT_LINE('O Estado com maior numero de tecnicos é o ' ||var_estado|| ' com' || count_tecnicos || ' tecnicos.');
 
---END GET_ESTADO_COM_MAIOR_NUMERO_TECNICOS;
---/
+END GET_ESTADO_COM_MAIOR_NUMERO_TECNICOS;
+/
 
---CREATE OR REPLACE PROCEDURE GET_CATEGORIA_COM_MAIOR_NUMERO_SERVICOS
---IS
---  var_countServicos NUMBER(20);
---  var_categoria  NUMBER(20);
---BEGIN
+CREATE OR REPLACE PROCEDURE GET_CATEGORIA_COM_MAIOR_NUMERO_SERVICOS
+IS
+  var_countServicos NUMBER(20);
+  var_categoria  NUMBER(20);
+BEGIN
 
---SELECT count(codigo_estado)
---INTO var_totalEst
+SELECT count(codigo_estado)
+INTO var_totalEst
 
---FROM projeto_iservice.estado;
+FROM projeto_iservice.estado;
 
---  DBMS_OUTPUT.PUT_LINE('A categoria com maior numero de servicos é a ' ||var_categoria|| ' com ' || var_servicos || '.');
+  DBMS_OUTPUT.PUT_LINE('A categoria com maior numero de servicos é a ' ||var_categoria|| ' com ' || var_servicos || '.');
 
---END GET_CATEGORIA_COM_MAIOR_NUMERO_SERVICOS;
---/
+END GET_CATEGORIA_COM_MAIOR_NUMERO_SERVICOS;
+/
 
 CREATE OR REPLACE PROCEDURE ATUALIZA_TABELA_SERVICOS_FINALIZADOS
 IS
@@ -184,11 +183,15 @@ FROM iservice.Pedidos;
   DBMS_OUTPUT.PUT_LINE('Servico atualizado na base de dados com a data' ||var_dataFimServico|| ' .');
 END Get_QuantidadeDeEstados;
 /
-------------------------------------PROCEDURES------------------------------------
+------------------------------------END PROCEDURES------------------------------------
 drop table servicos;   
 drop table categoria;    
 drop table usuarios;
     
+CREATE SEQUENCE ESPECIALIDADE_SEQ
+START WITH 1
+INCREMENT BY 1;	
+	
 CREATE SEQUENCE USUARIO_SEQ
 START WITH 1
 INCREMENT BY 1;

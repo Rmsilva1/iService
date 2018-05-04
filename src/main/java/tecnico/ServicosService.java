@@ -83,7 +83,6 @@ public class ServicosService implements Serializable {
 			List<Categoria> listaCategorias = query.getResultList();
 			em.close();
 			return listaCategorias;
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
