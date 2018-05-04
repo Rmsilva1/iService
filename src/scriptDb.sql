@@ -125,19 +125,17 @@ FROM iservice.USUARIOS;
 END GET_TOTAL_USUARIOS;
 /
 
-CREATE OR REPLACE PROCEDURE GET_SERVICO_MAIS_CAROS
+CREATE OR REPLACE PROCEDURE GET_SERVICO_MAIS_CARO
 IS
   var_nomeServico varchar(255);
-  var_precoServico NUMBER(8,2)
+  var_precoServico NUMBER(8,2);
 BEGIN
 
 SELECT Descricao, max(Preco)
 INTO var_nomeServico, var_precoServico
 
 FROM iservice.SERVICOS;
-
-  DBMS_OUTPUT.PUT_LINE('O servico mais caro é o ' ||var_nomeServico|| ' Com o valor de ' || 'R$ ' ||var_precoServico '.');
-
+  DBMS_OUTPUT.PUT_LINE('O servico mais caro é o ' ||var_nomeServico|| ' Com o valor de ' || 'R$ ' || var_precoServico || '.');
 END GET_SERVICO_MAIS_CARO;
 /
 
