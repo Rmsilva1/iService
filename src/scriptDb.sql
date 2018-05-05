@@ -232,7 +232,7 @@ BEGIN
 FROM ( SELECT A.*, (SELECT COUNT(*) FROM servicos B WHERE A.ID_CATEGORIA = B.ID_CATEGORIA) AS contagem FROM categorias_servicos A) Z where 
     Z.contagem = (SELECT MAX(k.CONTAGEM) FROM (SELECT A.*, (SELECT COUNT(*) FROM servicos B WHERE A.ID_CATEGORIA = B.ID_CATEGORIA) AS contagem FROM categorias_servicos A) K);
     
-  DBMS_OUTPUT.PUT_LINE('A categoria com maior numero de servicos e a de' ||var_descricao|| ' com ' || var_countServicos || '.');
+  DBMS_OUTPUT.PUT_LINE('A categoria com maior numero de servicos e a de' ||var_descricao|| ' com ' || var_countServicos || ' servicos cadastrados.');
 
 END CAT_MAIOR_NUMERO_SERVICOS;
 /
@@ -262,10 +262,6 @@ SELECT * INTO var_ID_PEDIDO, var_ID_USUARIO_SOLICITANTE, var_ID_SERVICO, var_ID_
     DBMS_OUTPUT.PUT_LINE('Servico :' ||var_ID_PEDIDO|| ' atualizado na base de dados com a data' ||var_DATA_FINALIZACAO|| ' .');
 END ATUALIZA_SERVICOS_FINALIZADOS;
 /
-
-
-exec 
-
 
 --exec ATUALIZA_SERVICOS_FINALIZADOS;
 ------------------------------------END PROCEDURES------------------------------------
