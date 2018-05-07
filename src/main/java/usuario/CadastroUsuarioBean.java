@@ -11,6 +11,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import entity.Usuario;
+import util.CryptoUtils;
 
 @ViewScoped
 @ManagedBean(name="cadastroUsuarioBean")
@@ -38,11 +39,14 @@ public class CadastroUsuarioBean implements Serializable{
 	private String rua;
 	private Integer numero;
 	private String complemento;
+	private Boolean flagHabilitaModal;
+
 	
 	public CadastroUsuarioBean() {}
 
 	@PostConstruct
 	public void init() { 
+		flagHabilitaModal = false;
 		usuarioService = new UsuarioService(); 
 	}
 	
@@ -58,16 +62,18 @@ public class CadastroUsuarioBean implements Serializable{
 	public void cadastrar() throws Exception {
 		Usuario usuarioPersistir = montarUsuario();
 		if(usuarioService.cadastrarUsuario(usuarioPersistir));
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioPersistir);
 			redirecionarPaginaHomeTecnico();
 	}
 	
 	public Usuario montarUsuario() throws Exception {
 		Usuario usuario = new Usuario();
  		usuario.setIdUsuario(usuarioService.consultarMaiorIdUsuario());
+ 		usuario.setPermissionLevel(1);
 		usuario.setIsTecnico(isTecnico.equals(Boolean.TRUE) ? 1 : 0);
 		usuario.setCpf(cpf);
 		usuario.setEmail(email.toLowerCase()); 
-		usuario.setSenha(senha);
+		usuario.setSenha(CryptoUtils.convertStringToMd5(senha));
 		usuario.setNome(nome);
 		usuario.setTelefone(telefone);
 		usuario.setEstado(estado);
@@ -82,6 +88,12 @@ public class CadastroUsuarioBean implements Serializable{
 	public String voltar() {
 		return "/pages/index.xhtml";
 	}
+	
+	public void abrirModal() 
+		{ flagHabilitaModal = true; }
+	
+	public void fecharModal() 
+		{ flagHabilitaModal = false; }
 	
 	public void redirecionarPaginaCadastro() throws IOException {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -219,5 +231,13 @@ public class CadastroUsuarioBean implements Serializable{
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+
+	public Boolean getflagHabilitaModal() {
+		return flagHabilitaModal;
+	}
+
+	public void setflagHabilitaModal(Boolean flagHabilitaModal) {
+		this.flagHabilitaModal = flagHabilitaModal;
 	}
 }

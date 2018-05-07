@@ -17,15 +17,15 @@
 				<h:form>
 					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 						<h:outputText value="Irá atuar como Tecnico?"/>
-						<br/>
-						<h:selectOneRadio id="selectOne" value="#{cadastroUsuarioBean.isTecnico}">
-				            <f:selectItem itemLabel="Sim" itemValue="true" />
-				            <f:selectItem itemLabel="Não" itemValue="false" />
-				        </h:selectOneRadio>
+<!-- 						<br/> -->
+<!-- 						<h:selectOneRadio id="selectOne" value="#{editarMeuUsuarioBean.usuario.isTecnico}"> -->
+<!-- 				            <f:selectItem itemLabel="Sim" itemValue="true" /> -->
+<!-- 				            <f:selectItem itemLabel="Não" itemValue="false" /> -->
+<!-- 				        </h:selectOneRadio> -->
 			        </h:panelGrid>
 			
 					<div class="align: right">
-						<p:inputText placeholder="Nome" value="#{cadastroUsuarioBean.nome}" required="true" />
+						<p:inputText placeholder="Nome" value="#{editarMeuUsuarioBean.usuario.nome}" required="true" />
 					</div>
 					<br />
 					<div class="align: righ">
@@ -34,39 +34,32 @@
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Email" value="#{cadastroUsuarioBean.email}" required="true" />
+						<p:inputText placeholder="Email" value="#{editarMeuUsuarioBean.usuario.email}" required="true" />
 					</div>
 					<br />
-					<p:password placeholder="Senha" id="pwd1" value="#{cadastroUsuarioBean.senha}"
-						label="Senha" required="true" />
-					<br />
-					<div>
-						<p:password style="margin-top: 2%" placeholder="ConfirmaSenha" id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}"
-							label="Senha 2" />
+			
+					<div class="align: right">
+						<p:inputMask placeholder="Telefone" mask="(99)99999-9999" value="#{editarMeuUsuarioBean.usuario.telefone}"  required="true" converterMessage="Somente Numeros." />
 					</div>
 					<br/>
 					<div class="align: right">
-						<p:inputMask placeholder="Telefone" mask="(99)99999-9999" value="#{cadastroUsuarioBean.telefone}"  required="true" converterMessage="Somente Numeros." />
-					</div>
-					<br/>
-					<div class="align: right">
-						<p:inputMask id="cep" mask="99999-999" placeholder="CEP" size="20" value="#{cadastroUsuarioBean.cep}" required="true" />
+						<p:inputMask id="cep" mask="99999-999" placeholder="CEP" size="20" value="#{editarMeuUsuarioBean.usuario.cep}" required="true" />
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Estado" value="#{cadastroUsuarioBean.estado}" required="true" />
+						<p:inputText placeholder="Estado" value="#{editarMeuUsuarioBean.usuario.estado}" required="true" />
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Cidade" value="#{cadastroUsuarioBean.cidade}" required="true" />
+						<p:inputText placeholder="Cidade" value="#{editarMeuUsuarioBean.usuario.cidade}" required="true" />
 					</div>
 					<br/>
 					<div class="align: right">
-						<p:inputText placeholder="Bairro" value="#{cadastroUsuarioBean.bairro}" required="true" />
+						<p:inputText placeholder="Bairro" value="#{editarMeuUsuarioBean.usuario.bairro}" required="true" />
 					</div>
 					<br />
 					<p:commandButton value="Voltar" url="http://localhost:9999/iService/pages/index.jsf" />
-					<p:commandButton value="Cadastrar" style="margin-left: 2%" action="#{cadastroUsuarioBean.validarCadastro()}"/>	
+					<p:commandButton value="Salvar" />
 				</h:form>
 			</div>
 		</div>

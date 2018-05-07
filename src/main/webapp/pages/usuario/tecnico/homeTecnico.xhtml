@@ -12,7 +12,7 @@
 			<div class="starter-template">
 				<br /> <br /> <br />
 				<h:head>
-					<p:outputLabel value="Bem vindo Tecnico" />
+					<p:outputLabel value="Bem vindo Tecnico #{homeTecnicoBean.usuarioLogado.nome}." />
 				</h:head>
 				<br />
 				<h:form>
@@ -28,6 +28,9 @@
 						<br/>
 						<p:commandButton value="Excluir Um serviço" style="margin-top:2%" 
 							action="#{homeTecnicoBean.redirecionarPaginaExcluirServico()}"/>
+						<br/>
+						<p:commandButton value="Editar meu Usuario" style="margin-top:2%" 
+							action="#{homeTecnicoBean.redirecionarPaginaEditarMeuUsuario()}"/>
 						<br/>
 					</div>	
 				</h:form>

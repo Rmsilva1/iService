@@ -9,6 +9,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import entity.Usuario;
+
 @ViewScoped
 @ManagedBean(name="homeTecnicoBean")
 public class HomeTecnicoBean implements Serializable{
@@ -20,16 +22,26 @@ public class HomeTecnicoBean implements Serializable{
 	private String paginaExcluirServico = "/pages/usuario/tecnico/excluirServico.jsf";
 	private String paginaPerfil = "/pages/usuario/tecnico/editarPerfil.jsf";
 	private String paginaMeusServicos = "/pages/usuario/tecnico/meusServicos.jsf";
+	private String paginaEditarMeuUsuario = "/pages/usuario/editarMeuUsuario.jsf";
+	private Usuario usuarioLogado;
 
-	public HomeTecnicoBean() { }
+	public HomeTecnicoBean() {}
 	
 	@PostConstruct
-	public void init() {}
+	public void init() {
+		usuarioLogado = (Usuario) 
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
+	}
 	
 	
 	public void redirecionarPaginaMeusServicos() throws IOException{
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaMeusServicos);
+	}
+	
+	public void redirecionarPaginaEditarMeuUsuario() throws IOException{
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaEditarMeuUsuario);
 	}
 	
 	public void redirecionarPaginaCadastrarServico() throws IOException{
@@ -48,7 +60,16 @@ public class HomeTecnicoBean implements Serializable{
 	}
 	
 	public void redirecionarPaginaEditarMeuPerfil() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaPerfil);
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 }

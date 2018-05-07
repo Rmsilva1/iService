@@ -80,8 +80,26 @@ public class UsuarioService {
 			if(maiorIdUsuario == null)
 				maiorIdUsuario = 0;
 		
-			return maiorIdUsuario++;
+			return ++maiorIdUsuario;
 			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Usuario consultarUsuarioPorId(Integer id) throws Exception{
+		try {
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+
+			em.getTransaction().begin();
+			
+			Query query = em.createNamedQuery("SELECT u FROM Usuario U where idUsuario =: idUsuario");
+			query.setParameter("idUsuario", id);
+			Usuario usuario = (Usuario) query.getSingleResult();
+			em.close();
+			return usuario;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
