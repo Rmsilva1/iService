@@ -19,14 +19,26 @@ BEGIN
      Dbms_Output.Put_Line(Systimestamp);
 END;
 
+CREATE TABLE ERROR(
+	ERRORR VARCHAR(128) NOT NULL,
+	ERROOR VARCHAR(128) NOT NULL,
+	ERRROR VARCHAR(128) NOT NULL,
+	EERROR VARCHAR(128) NOT NULL,
+	ERRORRR VARCHAR(128) NOT NULL,
+	ERRORE VARCHAR(128) NOT NULL,
+	ERRORRE VARCHAR(128) NOT NULL,
+	ERRORRRRE VARCHAR(128) NOT NULL
+	ERRORER VARCHAR(64));
+
+
 CREATE TABLE Usuarios (
     id_usuario INTEGER NOT NULL CONSTRAINT USUARIO_PK PRIMARY KEY,
     permissionLevel INTEGER NOT NULL,
     isTecnico INTEGER NOT NULL,
+	Nome VARCHAR(128) NOT NULL,
     cpf VARCHAR(14) NOT NULL,
     Email VARCHAR(64) NOT NULL,
-    Senha VARCHAR(128) NOT NULL,
-    Nome VARCHAR(128) NOT NULL,
+    Senha VARCHAR(128) NOT NULL,    
     Telefone VARCHAR(16) NOT NULL,
     Estado VARCHAR(32) NOT NULL,
     Cidade VARCHAR(32) NOT NULL,
@@ -34,6 +46,18 @@ CREATE TABLE Usuarios (
     bairro VARCHAR(64),
     rua VARCHAR(64),
     complemento VARCHAR(64));
+	
+CREATE TABLE Endereco2 (
+	ID_Endereco INTEGER NOT NULL CONSTRAINT ENDERECO_PK PRIMARY KEY,
+	ID_Usuario INTEGER NOT NULL,
+	Estado VARCHAR2(64),
+	Cep VARCHAR2(64),
+	Cidade VARCHAR2(64),
+	Bairro VARCHAR2(64),
+	Rua VARCHAR2(64),
+	Numero VARCHAR2(64),
+	Complemento VARCHAR2(64),
+    CONSTRAINT FK_Endereco_Usuario FOREIGN KEY(ID_Usuario) REFERENCES USUARIOS(ID_USUARIO));
 
 CREATE TABLE Categorias_Servicos (
     ID_Categoria INTEGER NOT NULL CONSTRAINT CATEGORIA_PK PRIMARY KEY,
@@ -48,18 +72,6 @@ CREATE TABLE Servicos (
     CONSTRAINT FK_Usuario FOREIGN KEY(ID_Usuario) REFERENCES Usuarios(id_usuario),
     CONSTRAINT FK_Categoria FOREIGN KEY(ID_Categoria) REFERENCES Categorias_Servicos(ID_CATEGORIA));
 	
-CREATE TABLE Endereco2 (
-	ID_Endereco INTEGER NOT NULL CONSTRAINT ENDERECO_PK PRIMARY KEY,
-	ID_Usuario INTEGER NOT NULL,
-	Estado VARCHAR2(64),
-	Cep VARCHAR2(64),
-	Cidade VARCHAR2(64),
-	Bairro VARCHAR2(64),
-	Rua VARCHAR2(64),
-	Numero VARCHAR2(64),
-	Complemento VARCHAR2(64),
-    CONSTRAINT FK_Endereco_Usuario FOREIGN KEY(ID_Usuario) REFERENCES USUARIOS(ID_USUARIO));
-	
 CREATE TABLE Avaliacoes (
 	ID_Avaliacao INTEGER NOT NULL CONSTRAINT AVALIACAO_PK PRIMARY KEY,
 	ID_Servico INTEGER NOT NULL,
@@ -68,13 +80,15 @@ CREATE TABLE Avaliacoes (
     
 CREATE TABLE Pedidos (
 	ID_Pedido INTEGER NOT NULL CONSTRAINT PEDIDO_PK PRIMARY KEY,
-	ID_USUARIO_SOLICITANTE INTEGER NOT NULL,
+	ID_Usuario_Solicitante INTEGER NOT NULL,
+	ID_Tecnico INTEGER NOT NULL,
 	ID_Servico INTEGER NOT NULL,
 	ID_Nota INTEGER NOT NULL,
 	Data_Solicitacao timestamp,
 	Data_Finalizacao timestamp,
     CONSTRAINT FK_PEDIDO_SERVICO FOREIGN KEY(ID_Servico) REFERENCES SERVICOS(ID_Servico),
-	CONSTRAINT FK_USUARIO_SOLICITANTE FOREIGN KEY(ID_USUARIO_SOLICITANTE) REFERENCES USUARIOS(ID_USUARIO));
+	CONSTRAINT FK_USUARIO_SOLICITANTE FOREIGN KEY(ID_Usuario_Solicitante) REFERENCES USUARIOS(ID_USUARIO),
+	CONSTRAINT FK_TECNICO FOREIGN KEY(ID_Tecnico) REFERENCES USUARIOS(ID_USUARIO));
 	
 CREATE TABLE Pedidos_Finalizados (
 	ID_Pedido_Finalizado INTEGER NOT NULL CONSTRAINT SERVICO_FINALIZADO_PK PRIMARY KEY,
@@ -137,39 +151,38 @@ COMPLEMENTO) VALUES(4,1,1,'00000000000', 'Maria@hotmail.com', '123456', 'Maria d
 insert into usuarios(ID_USUARIO, PERMISSIONLEVEL, ISTECNICO, CPF, EMAIL, SENHA, NOME, TELEFONE, ESTADO, CIDADE, CEP, BAIRRO, RUA,
 COMPLEMENTO) VALUES(5,1,1,'00000000000', 'jhonny@hotmail.com', '123456', 'Jhonny test', '123456789', 'Parana', 'Sao Jose', 'TESTE', 'TESTE', 'TESTE','TESTE');
 
-
 /
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(99, 1, 10, 'Terraplanagem de terros grandes 2', 850.00);
-COMMIT;
-insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(2, 1, 4, 'Concerto de fiacao eletrica', 250.00);
+	(99, 1, 10, 'Terraplanagem de terros grandes 2', 850.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(3, 1, 8, 'Manutencao em piscina', 150.00);
+	(2, 1, 4, 'Concerto de fiacao eletrica', 250.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(4, 1, 8, 'Limpeza em piscina', 150.00);
+	(3, 1, 8, 'Manutencao em piscina', 150.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(5, 1, 8, 'Concerto pscina', 500.00);
+	(4, 1, 8, 'Limpeza em piscina', 150.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(6, 1, 2, 'Detetizacao Basica', 100.00);
+	(5, 1, 8, 'Concerto pscina', 500.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(7, 1, 7, 'Podagem pequena', 250.00);
+	(6, 1, 2, 'Detetizacao Basica', 100.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(8, 1, 7, 'Podagem Grande', 350.00);
+	(7, 1, 7, 'Podagem pequena', 250.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(9, 1, 4, 'Reforma estrutura eletrica', 1500.00);
+	(8, 1, 7, 'Podagem Grande', 350.00);
 
 insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
-(10, 1, 10, 'Terraplanagem terros pequenos', 510.00);
+	(9, 1, 4, 'Reforma estrutura eletrica', 1500.00);
 
-select * from servicos;
+insert into servicos(id_servico, id_usuario, id_categoria, descricao, preco) values
+	(10, 1, 10, 'Terraplanagem terros pequenos', 510.00);
+
+insert into avaliacoes values(3,2,5);
 
 insert into avaliacoes(id_avaliacao,id_servico,nota) values (1,1,5);
 
@@ -198,7 +211,7 @@ CREATE OR REPLACE PROCEDURE GET_SERVICO_MAIS_CARO
 IS
   var_nomeServico varchar(255);
   var_precoServico number(8,2);
-BEGINWW
+BEGIN
     SELECT descricao, preco INTO var_nomeServico, var_precoServico
 FROM SERVICOS WHERE preco = (select max(preco) from servicos);
   DBMS_OUTPUT.PUT_LINE('O servico mais caro registrado no sistema e o : '||'"'|| var_nomeServico ||'"'|| ' com o valor de ' || 'R$ ' || var_precoServico || '.');
@@ -228,16 +241,15 @@ IS
    var_countServicos NUMBER(20);
 BEGIN
     SELECT Z.* INTO var_id_categoria,var_descricao,var_countServicos
-    
-FROM ( SELECT A.*, (SELECT COUNT(*) FROM servicos B WHERE A.ID_CATEGORIA = B.ID_CATEGORIA) AS contagem FROM categorias_servicos A) Z where 
+		FROM ( SELECT A.*, (SELECT COUNT(*) FROM servicos B WHERE A.ID_CATEGORIA = B.ID_CATEGORIA) AS contagem FROM categorias_servicos A) Z where 
     Z.contagem = (SELECT MAX(k.CONTAGEM) FROM (SELECT A.*, (SELECT COUNT(*) FROM servicos B WHERE A.ID_CATEGORIA = B.ID_CATEGORIA) AS contagem FROM categorias_servicos A) K);
     
-  DBMS_OUTPUT.PUT_LINE('A categoria com maior numero de servicos e a de' ||var_descricao|| ' com ' || var_countServicos || ' servicos cadastrados.');
+  DBMS_OUTPUT.PUT_LINE('A categoria com maior numero de servicos e a de ' ||var_descricao|| ' com ' || var_countServicos || ' servicos cadastrados.');
 
 END CAT_MAIOR_NUMERO_SERVICOS;
 /
 
-EXEC CAT_MAIOR_NUMERO_SERVICOS;
+--exec CAT_MAIOR_NUMERO_SERVICOS;
 
 CREATE OR REPLACE PROCEDURE ATUALIZA_SERVICOS_FINALIZADOS
 IS
@@ -248,18 +260,17 @@ IS
     var_DATA_SOLICITACAO TIMESTAMP;
     var_DATA_FINALIZACAO TIMESTAMP;      
 BEGIN
-
-SELECT * INTO var_ID_PEDIDO, var_ID_USUARIO_SOLICITANTE, var_ID_SERVICO, var_ID_NOTA, 
-    var_DATA_SOLICITACAO, var_DATA_FINALIZACAO FROM PEDIDOS WHERE ID_PEDIDO = 1;
-	
-    IF var_DATA_FINALIZACAO is not null  
-        THEN        
-        DBMS_OUTPUT.PUT_LINE('Executando insert');
-			insert into Pedidos_Finalizados(ID_SERVICO_FINALIZADO, ID_SERVICO, ID_PEDIDO,
-                ID_CATEGORIA, ID_NOTA, DATAFINALIZACAO, ID_USUARIO_CONTRATANTE, ID_TECNICO_FORNECEDOR)
-            VALUES (SERVICOS_FINALIZADOS_SEQ.NEXTVAL, var_ID_SERVICO, var_ID_PEDIDO, 1, var_ID_NOTA, var_DATA_FINALIZACAO, var_ID_USUARIO_SOLICITANTE, 1);            
-    END IF;
-    DBMS_OUTPUT.PUT_LINE('Servico :' ||var_ID_PEDIDO|| ' atualizado na base de dados com a data' ||var_DATA_FINALIZACAO|| ' .');
+	SELECT * INTO var_ID_PEDIDO, var_ID_USUARIO_SOLICITANTE, var_ID_SERVICO, var_ID_NOTA, 
+		var_DATA_SOLICITACAO, var_DATA_FINALIZACAO FROM PEDIDOS WHERE ID_PEDIDO = 3;
+		
+		IF var_DATA_FINALIZACAO is not null  
+			THEN        
+				DBMS_OUTPUT.PUT_LINE('Executando insert');
+				insert into Pedidos_Finalizados(ID_PEDIDO_FINALIZADO, ID_SERVICO, ID_PEDIDO,
+					ID_CATEGORIA, ID_NOTA, DATAFINALIZACAO, ID_USUARIO_CONTRATANTE, ID_TECNICO_FORNECEDOR)
+				VALUES (SERVICOS_FINALIZADOS_SEQ.NEXTVAL, var_ID_SERVICO, var_ID_PEDIDO, 1, var_ID_NOTA, var_DATA_FINALIZACAO, var_ID_USUARIO_SOLICITANTE, 1);            
+		END IF;
+		DBMS_OUTPUT.PUT_LINE('Servico :' ||var_ID_PEDIDO|| ' atualizado na base de dados com a data ' ||var_DATA_FINALIZACAO|| ' .');
 END ATUALIZA_SERVICOS_FINALIZADOS;
 /
 
