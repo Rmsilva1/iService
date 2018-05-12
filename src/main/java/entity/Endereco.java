@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Endereco")
+@Table(name = "ENDERECOS_SECUNDARIOS")
 public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 4683554548002572431L;

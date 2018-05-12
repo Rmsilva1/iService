@@ -22,7 +22,6 @@ public class EditarMeuUsuarioBean implements Serializable{
 	private static final long serialVersionUID = -2636562746931768094L;
 	
 	private Usuario usuario;
-	private UsuarioService usuarioService;
 	private Boolean flagHabilitaModal;
 	
 	public EditarMeuUsuarioBean() {}
@@ -35,7 +34,7 @@ public class EditarMeuUsuarioBean implements Serializable{
 	}
 	
 	public void salvarEdicaoUsuario() throws Exception {	
-		usuarioService.editarUsuarioCompleto(usuario);
+		UsuarioService.editarUsuarioCompleto(usuario);
 	}
 	
 	public void flagHabilitaModal() 

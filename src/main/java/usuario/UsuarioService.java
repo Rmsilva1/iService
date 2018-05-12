@@ -1,6 +1,5 @@
 package usuario;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Named;
@@ -88,7 +87,7 @@ public class UsuarioService {
 		}
 	}
 	
-	public Usuario consultarUsuarioPorId(Integer id) throws Exception{
+	public  Usuario consultarUsuarioPorId(Integer id) throws Exception{
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
@@ -106,7 +105,7 @@ public class UsuarioService {
 		}
 	}
 	
-	public void editarUsuarioCompleto(Usuario usuario) throws Exception{
+	public static void editarUsuarioCompleto(Usuario usuario) throws Exception{
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
@@ -114,7 +113,7 @@ public class UsuarioService {
 			
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("UPDATE Usuario");
+			sql.append("UPDATE Usuario ");
 			sql.append("SET cpf = :cpf, ");
 			sql.append("email = :email, ");
 			sql.append("nome = :nome,");
@@ -123,7 +122,7 @@ public class UsuarioService {
 			sql.append("cep = :cep, ");
 			sql.append("bairro = :bairro, ");
 			sql.append("rua = :rua, ");
-			sql.append("complemento = :complemento ");
+			sql.append("complemento = :complemento ");	
 			sql.append("WHERE idUsuario = :idUsuario ");
 			
 			Query query = em.createQuery(sql.toString());
@@ -138,8 +137,9 @@ public class UsuarioService {
 			query.setParameter("rua", usuario.getRua());
 			query.setParameter("complemento", usuario.getComplemento());
 			query.setParameter("idUsuario", usuario.getIdUsuario());
-
+			query.executeUpdate();
 			entityManagerFactory.close();
+			
 		}catch(HibernateException e) {
 			e.printStackTrace();
 		}

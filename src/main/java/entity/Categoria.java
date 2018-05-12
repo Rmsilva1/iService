@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Categoria")
+@Table(name = "CATEGORIAS_SERVICO")
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 5577520425157566585L;
