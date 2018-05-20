@@ -1,10 +1,12 @@
 package usuario;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import entity.Usuario;
@@ -23,6 +25,10 @@ public class EditarMeuUsuarioBean implements Serializable{
 	
 	private Usuario usuario;
 	private Boolean flagHabilitaModal;
+	private String paginaHome = "/pages/usuario/tecnico/homeTecnico.jsf";
+	private String paginaIndex = "/pages/index.jsf";
+
+
 	
 	public EditarMeuUsuarioBean() {}
 	
@@ -37,11 +43,29 @@ public class EditarMeuUsuarioBean implements Serializable{
 		UsuarioService.editarUsuarioCompleto(usuario);
 	}
 	
-	public void flagHabilitaModal() 
-		{ flagHabilitaModal = true; }
+	public void redirecionarPaginaHomeTecnico() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuario);
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaHome);
+	}
+	
+	public void excluirMeuUsuario() throws Exception {
+		UsuarioService.apagarUsuario(usuario.getIdUsuario());
+		redirecionarIndex();
+	}
+	
+	public void redirecionarIndex() throws Exception{
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaIndex);
+	}
+	
+	public void flagHabilitaModal() { 
+		flagHabilitaModal = true; 
+	}
 
-	public void fecharModal() 
-		{ flagHabilitaModal = false; }
+	public void fecharModal() { 
+		flagHabilitaModal = false; 
+	}
 
 	public Usuario getUsuario() {
 		return usuario;

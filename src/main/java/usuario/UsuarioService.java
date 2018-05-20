@@ -119,6 +119,7 @@ public class UsuarioService {
 			sql.append("nome = :nome,");
 			sql.append("estado = :estado, ");
 			sql.append("cidade = :cidade, ");
+			sql.append("telefone = :telefone, ");
 			sql.append("cep = :cep, ");
 			sql.append("bairro = :bairro, ");
 			sql.append("rua = :rua, ");
@@ -133,6 +134,7 @@ public class UsuarioService {
 			query.setParameter("estado", usuario.getEstado());
 			query.setParameter("cep", usuario.getCep());
 			query.setParameter("cidade", usuario.getCidade());
+			query.setParameter("telefone", usuario.getTelefone());
 			query.setParameter("bairro", usuario.getBairro());
 			query.setParameter("rua", usuario.getRua());
 			query.setParameter("complemento", usuario.getComplemento());
@@ -145,7 +147,7 @@ public class UsuarioService {
 		}
 	}
 	
-	public void apagarUsuario(Integer id) throws Exception{
+	public static void apagarUsuario(Integer id) throws Exception{
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
@@ -153,13 +155,14 @@ public class UsuarioService {
 			
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("DELETE FROM Usuario");
-			sql.append("WHERE ID_USUARIO =: idUsuario");
+			sql.append("DELETE FROM Usuario ");
+			sql.append("WHERE idUsuario = :idUsuario ");
 			
 			Query query = em.createQuery(sql.toString());
-			
 			query.setParameter("idUsuario", id);
+			query.executeUpdate();
 			entityManagerFactory.close();
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

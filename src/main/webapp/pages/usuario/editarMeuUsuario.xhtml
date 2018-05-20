@@ -23,14 +23,13 @@
 <!-- 				            <f:selectItem itemLabel="Não" itemValue="false" /> -->
 <!-- 				        </h:selectOneRadio> -->
 			        </h:panelGrid>
-			
 					<div class="align: right">
 						<p:inputText placeholder="Nome" value="#{editarMeuUsuarioBean.usuario.nome}" required="true" />
 					</div>
 					<br />
 					<div class="align: righ">
 						<p:inputMask id="cpf" placeholder="CPF" mask="999.999.999-99" 
-							size="20" value="#{cadastroUsuarioBean.cpf}" required="true"/>
+							size="20" value="#{editarMeuUsuarioBean.usuario.cpf}" required="true"/>
 					</div>
 					<br />
 					<div class="align: right">
@@ -58,8 +57,9 @@
 						<p:inputText placeholder="Bairro" value="#{editarMeuUsuarioBean.usuario.bairro}" required="true" />
 					</div>
 					<br />
-					<p:commandButton value="Voltar" url="http://localhost:9999/iService/pages/index.jsf" />
+					<p:commandButton value="Voltar" action="#{editarMeuUsuarioBean.redirecionarPaginaHomeTecnico()}" />
 					<p:commandButton value="Salvar" action="#{editarMeuUsuarioBean.salvarEdicaoUsuario()}"/>
+					<p:commandButton value="Excluir" action="#{editarMeuUsuarioBean.excluirMeuUsuario()}"/>
 				</h:form>
 			</div>
 		</div>

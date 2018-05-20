@@ -89,11 +89,13 @@ public class CadastroUsuarioBean implements Serializable{
 		return "/pages/index.xhtml";
 	}
 	
-	public void abrirModal() 
-		{ flagHabilitaModal = true; }
+	public void abrirModal() { 
+		flagHabilitaModal = true; 
+	}
 	
-	public void fecharModal() 
-		{ flagHabilitaModal = false; }
+	public void fecharModal() { 
+		flagHabilitaModal = false; 
+	}
 	
 	public void redirecionarPaginaCadastro() throws IOException {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
