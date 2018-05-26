@@ -14,15 +14,14 @@
 				<br /> <br /> <br />
 				<p:outputLabel value="Primeiramente, você é um cliente ou tecnico?" />
 				<br /> <br />
-				<p:panelGrid styleClass="margins-debug">
+				<p:panelGrid>
 					<p:row>
 						<h:form>
 							<p:commandButton value="Cliente"
 								action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}" />
 							<p:commandButton style="margin-left: 10px" value="Tecnico"
 								action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}">
-								<f:setPropertyActionListener
-									target="#{cadastroUsuarioBean.isTecnico}" value="#{true}" />
+								<f:setPropertyActionListener target="#{cadastroUsuarioBean.isTecnico}" value="#{true}" />
 							</p:commandButton>
 						</h:form>
 					</p:row>

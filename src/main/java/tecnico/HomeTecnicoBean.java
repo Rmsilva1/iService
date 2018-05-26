@@ -35,26 +35,31 @@ public class HomeTecnicoBean implements Serializable{
 	
 	
 	public void redirecionarPaginaMeusServicos() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaMeusServicos);
 	}
 	
 	public void redirecionarPaginaEditarMeuUsuario() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaEditarMeuUsuario);
 	}
 	
 	public void redirecionarPaginaCadastrarServico() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaCadastrarServico);
 	}
 	
 	public void redirecionarPaginaAlterarServico() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaAlterarServico);
 	}
 	
 	public void redirecionarPaginaExcluirServico() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaExcluirServico);
 	}

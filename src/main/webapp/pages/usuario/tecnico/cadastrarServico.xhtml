@@ -16,9 +16,9 @@
 				</h:head>
 				<br /> <br />
 				<h:form>
-					<h:selectOneMenu id="console"  style="width:125px">
-			            <f:selectItem itemLabel="Selecione Uma Categoria" itemValue="" />
-			            <f:selectItems/>
+					<h:selectOneMenu id="console" style="width:125px" value="#{cadastrarServicoBean.categoriaSalvar}">
+			            <f:selectItem itemLabel="Selecione Uma Categoria"/>
+			            <f:selectItems value="#{cadastrarServicoBean.descricaoCategorias}"/>
         			</h:selectOneMenu>
 					<div class="span4">
 						<p:outputLabel value="Descricao do Serviço: " />
@@ -26,28 +26,11 @@
 					<div class="align: right">
 						<p:inputText value="#{cadastrarServicoBean.descricao}" required="true" />
 					</div>
-					<br />
-					<div class="span4">
-						<p:outputLabel value="Tecnico: " />
-					</div>
-					<div class="align: righ">
-						<p:inputText value="#{cadastrarServicoBean.usuarioTecnico}" required="true" />
-					</div>
-					<br />
-					<div class="span4">
-						<p:outputLabel value="Categoria: " />
-					</div>
-
-					<div class="align: right">
-						<p:inputText value="#{cadastrarServicoBean.categoria}" required="true" />
-					</div>
-					<br />
-
+					<br />	
 					<div class="span4">
 						<p:outputLabel value="Preco: " />
 					</div>
-					<p:inputText id="pwd1" value="#{cadastrarServicoBean.preco}"
-						label="Senha" required="true" />
+					<p:inputMask mask="999.99" id="preco" value="#{cadastrarServicoBean.preco}" required="true" />
 					<br />
 					<br />
 					<p:commandButton value="Voltar" action="#{cadastrarServicoBean.redirecionarPaginaHomeTecnico()}" />

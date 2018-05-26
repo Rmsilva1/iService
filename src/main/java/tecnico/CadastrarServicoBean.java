@@ -2,6 +2,7 @@ package tecnico;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import entity.Categoria;
+import entity.CategoriaEnum;
 import entity.Servico;
 import entity.Usuario;
 import usuario.UsuarioService;
@@ -22,6 +24,7 @@ public class CadastrarServicoBean implements Serializable{
 	
 	private String paginaHomeTecnico = "/iService/pages/usuario/tecnico/homeTecnico.jsf";
 	
+	private Usuario usuarioLogado;
 	private String descricao;
 	private List<Categoria> listaCategorias;
 	private Categoria categoria;
@@ -29,31 +32,39 @@ public class CadastrarServicoBean implements Serializable{
 	private Boolean isAtivo = false;
 	private List<Usuario> listaUsuarios;
 	private Usuario usuarioTecnico;
-	private ServicosService servicoService;
 	private UsuarioService usuarioService;
-	
+	private List<String> descricaoCategorias;
+	private String categoriaSalvar;
+
 	public CadastrarServicoBean(){}
 	
 	@PostConstruct
 	public void init() throws Exception {
-		servicoService = new ServicosService();
+		usuarioLogado = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
 		usuarioService = new UsuarioService();
-		listaCategorias = servicoService.listarTodasCategorias();
-//		listaUsuarios = usuarioService.listarTodosUsuarios();
+		descricaoCategorias = new ArrayList<String>();
+		listaCategorias = ServicosService.listarTodasCategorias();
+		for(Categoria categoria : listaCategorias) {
+			descricaoCategorias.add(categoria.getCategeoriaById(categoria.getIdCategoria()));
+		}
 	}
 
 	public void cadastrarServico() throws Exception{
+		Categoria categoriaEntity = new Categoria(CategoriaEnum.getIdByDescricao(categoriaSalvar), descricao);
 		Servico servicoCadastrar = new Servico();
+		
+		servicoCadastrar.setIdServico(ServicosService.consultarMaiorIdServico());
 		servicoCadastrar.setDescricao(descricao);
-		servicoCadastrar.setIdCategoria(categoria);
-		servicoService.cadastrarServico(servicoCadastrar);
+		servicoCadastrar.setIdCategoria(categoriaEntity.getIdCategoria());
+		servicoCadastrar.setPreco(preco);
+		servicoCadastrar.setIdUsuario(usuarioLogado.getIdUsuario());
+		ServicosService.cadastrarServico(servicoCadastrar);
 	}
 	
 	public void redirecionarPaginaHomeTecnico() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().redirect(paginaHomeTecnico);
 	}
-	
 	
 	public String getDescricao() {
 		return descricao;
@@ -71,9 +82,6 @@ public class CadastrarServicoBean implements Serializable{
 		return usuarioTecnico;
 	}
 
-	public ServicosService getServicoService() {
-		return servicoService;
-	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
@@ -89,10 +97,6 @@ public class CadastrarServicoBean implements Serializable{
 
 	public void setUsuarioTecnico(Usuario usuarioTecnico) {
 		this.usuarioTecnico = usuarioTecnico;
-	}
-
-	public void setServicoService(ServicosService servicoService) {
-		this.servicoService = servicoService;
 	}
 
 	public List<Usuario> getListaUsuarios() {
@@ -125,5 +129,29 @@ public class CadastrarServicoBean implements Serializable{
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public List<String> getDescricaoCategorias() {
+		return descricaoCategorias;
+	}
+
+	public void setDescricaoCategorias(List<String> descricaoCategorias) {
+		this.descricaoCategorias = descricaoCategorias;
+	}
+
+	public String getCategoriaSalvar() {
+		return categoriaSalvar;
+	}
+
+	public void setCategoriaSalvar(String categoriaSalvar) {
+		this.categoriaSalvar = categoriaSalvar;
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 }

@@ -22,7 +22,9 @@ public class HomeBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.xhtml";
+	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.jsf";
+	private String paginaLogin = "/pages/Login.jsf";
+
 
 	public HomeBean() {}
 
@@ -32,5 +34,10 @@ public class HomeBean implements Serializable {
 	public void redirecionarPaginaCadastro() throws IOException {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		context.redirect(context.getRequestContextPath() + paginaCadastrarUsuario);
+	}
+	
+	public void redirecionarPaginaLogin() throws IOException {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaLogin);
 	}
 }

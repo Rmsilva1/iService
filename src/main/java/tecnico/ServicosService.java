@@ -26,7 +26,7 @@ public class ServicosService implements Serializable {
 	public ServicosService() { }
 	
 	
-	public Boolean cadastrarServico(Servico servico) throws Exception{
+	public static Boolean cadastrarServico(Servico servico) throws Exception{
 		try {
 			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
@@ -47,7 +47,7 @@ public class ServicosService implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<Servico> listarTodosServicos() throws Exception{
+	public static List<Servico> listarTodosServicos() throws Exception{
 		try {
 			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
@@ -66,9 +66,37 @@ public class ServicosService implements Serializable {
 		}
 	}
 	
+	
+	@Transactional
+	public static Integer consultarMaiorIdServico() throws Exception{
+		try {
+			
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+			em.getTransaction().begin();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT MAX(idServico) FROM Servico S");
+
+			Query query = em.createQuery(sql.toString());
+			Integer maiorIdServico = (Integer) query.getSingleResult();
+			em.close();
+
+			if(maiorIdServico == null)
+				maiorIdServico = 0;
+		
+			return ++maiorIdServico;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<Categoria> listarTodasCategorias() throws Exception{
+	public static List<Categoria> listarTodasCategorias() throws Exception{
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();

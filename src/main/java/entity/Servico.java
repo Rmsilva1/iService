@@ -1,14 +1,10 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,17 +24,17 @@ public class Servico implements Serializable {
 	@Column(name = "ID_SERVICO", unique = true, nullable = false)
 	private Integer idServico;
 	
-	@OneToMany(mappedBy = "idUsuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Usuario> idUsuario;
+	@Column(name = "ID_TECNICO", unique = true, nullable = false)
+	private Integer idUsuario;
 	
-	@Column(name = "id_Categoria", unique = true, nullable = false)
-	private Categoria idCategoria;
+	@Column(name = "ID_CATEGORIA", unique = true, nullable = false)
+	private Integer idCategoria;
 	
 	@Column(name = "DESCRICAO", unique = true, nullable = false)
 	private String descricao;
 
 	@Column(name = "PRECO", unique = true, nullable = false)
-	private String preco;
+	private Double preco;
 
 	public Servico() {}
 
@@ -50,19 +46,19 @@ public class Servico implements Serializable {
 		this.idServico = idServico;
 	}
 
-	public Set<Usuario> getIdUsuario() {
+	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Set<Usuario> idUsuario) {
+	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
-	public Categoria getIdCategoria() {
+	public Integer getIdCategoria() {
 		return idCategoria;
 	}
 
-	public void setIdCategoria(Categoria idCategoria) {
+	public void setIdCategoria(Integer idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 
@@ -74,12 +70,11 @@ public class Servico implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-
 }

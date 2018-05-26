@@ -1,31 +1,49 @@
 package entity;
 
 public enum CategoriaEnum{
-	Chaveiro(1),
-	Detetizador(2),
-	Desentupidor(3),
-	Eletricista(4),
-	Encanador(5),
-	Jardineiro(6),
-	Pedreiro(7),
-	Piscineiro(8),
-	Vidraceiro(9),
-	Terraplanagem(10);
+	CHAVEIRO(1,"Chaveiro"),
+	DESENVOLVEDOR(2, "Desenvolvedor"),
+	ELETRICISTA(3, "Eletricista" ),
+	DESENTUPIDOR(4, "Desentupidor"),
+	DETETIZADOR(5, "Detetizador"),
+	ENCANADOR(6, "Encanador"),
+	JARDINEIRO(7, "Jardineiro"),
+	PEDREIRO(8, "Pedreiro"),
+	PISCINEIRO(9, "Piscineiro"),
+	VIDRACEIRO(10, "Vidraceiro"),
+	TERRAPLANISTA(11, "Terraplanista");
 	
-	private final Integer categoria;
+	private final Integer idCategoria;
+	private final String descricaoCategoria;
 	
-	private CategoriaEnum(Integer categoria) 
-		{ this.categoria = categoria; }
+	private CategoriaEnum(Integer idCategoria, String descricaoCategoria) { 
+		this.idCategoria = idCategoria;
+		this.descricaoCategoria = descricaoCategoria;
+	}
 	
-	public Integer pegarCategoriaComoInteiro() 
-		{ return categoria; }
-	
-	public static CategoriaEnum converterInteiroEmCategoria(Integer iCategoria){
+	public static String getCategoriaById(Integer idCategoria){
 		for(CategoriaEnum categoria: CategoriaEnum.values()){
-			if(categoria.pegarCategoriaComoInteiro() == iCategoria){
-				return categoria;
+			if(categoria.getIdCategoria() == idCategoria){
+				return categoria.descricaoCategoria;
 			}
 		}
 		return null;
+	}
+	
+	public static Integer getIdByDescricao(String descricao){
+		for(CategoriaEnum categoria: CategoriaEnum.values()){
+			if(categoria.getDescricao().equals(descricao)){
+				return categoria.idCategoria;
+			}
+		}
+		return null;
+	}
+	
+	public Integer getIdCategoria() { 
+		return idCategoria; 
+	}
+	
+	public String getDescricao() {
+		return descricaoCategoria;
 	}
 }

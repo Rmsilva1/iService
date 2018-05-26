@@ -1,0 +1,31 @@
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+	<ui:define name="head">
+		<title>iService</title>
+		<h:outputStylesheet name="css/starter-template.css" />
+	</ui:define>
+	<ui:define name="body">
+		<div class="container">
+			<div style="margin-top:5%" class="starter-template">
+				<h:head>
+					<p:outputLabel value="Cadastrar usuario" />
+				</h:head>
+				<br /> <br />
+				<h:form>
+					<div class="align: right">
+						<p:inputText placeholder="Email" value="#{cadastroUsuarioBean.email}" required="true" />
+					</div>
+					<br />
+					<p:password placeholder="Senha" id="pwd1" value="#{cadastroUsuarioBean.senha}"
+						label="Senha" required="true" />
+					<br />
+					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.redirecionarIndex()}" />
+					<p:commandButton value="Logar" style="margin-left: 2%" action="#{Log}"/>	
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:decorate>

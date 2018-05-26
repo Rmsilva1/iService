@@ -21,6 +21,7 @@ public class CadastroUsuarioBean implements Serializable{
 	
 	private String paginaCadastrarUsuario = "/pages/usuario/cadastrarUsuario.jsf";
 	private String paginaHomeTecnico = "/iService/pages/usuario/tecnico/homeTecnico.jsf";
+	private String paginaIndex = "/pages/index.jsf";
 	
 	private UsuarioRetorno usuarioRetorno;
 	private UsuarioService usuarioService;
@@ -85,10 +86,6 @@ public class CadastroUsuarioBean implements Serializable{
 		return usuario;
 	}
 	
-	public String voltar() {
-		return "/pages/index.xhtml";
-	}
-	
 	public void abrirModal() { 
 		flagHabilitaModal = true; 
 	}
@@ -105,6 +102,11 @@ public class CadastroUsuarioBean implements Serializable{
 	public void redirecionarPaginaHomeTecnico() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().redirect(paginaHomeTecnico);
+	}
+	
+	public void redirecionarIndex() throws Exception{
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaIndex);
 	}
 
 	public Boolean getIsTecnico() {

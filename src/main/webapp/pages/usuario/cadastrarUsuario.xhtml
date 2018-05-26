@@ -65,7 +65,7 @@
 						<p:inputText placeholder="Bairro" value="#{cadastroUsuarioBean.bairro}" required="true" />
 					</div>
 					<br />
-					<p:commandButton value="Voltar" url="http://localhost:9999/iService/pages/index.jsf" />
+					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.redirecionarIndex()}" />
 					<p:commandButton value="Cadastrar" style="margin-left: 2%" action="#{cadastroUsuarioBean.validarCadastro()}"/>	
 				</h:form>
 			</div>

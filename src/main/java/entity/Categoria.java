@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "CATEGORIAS_SERVICO")
+@Table(name = "CATEGORIAS_SERVICOS")
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 5577520425157566585L;
@@ -33,6 +33,12 @@ public class Categoria implements Serializable {
 		return idCategoria;
 	}
 
+	public Categoria(Integer idCategoria, String descricao) {
+		super();
+		this.idCategoria = idCategoria;
+		this.descricao = descricao;
+	}
+
 	public void setIdCategoria(Integer idCategoria) {
 		this.idCategoria = idCategoria;
 	}
@@ -44,5 +50,8 @@ public class Categoria implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
+	
+	public String getCategeoriaById(Integer idCategoria) {
+		return CategoriaEnum.getCategoriaById(idCategoria);
+	}
 }
