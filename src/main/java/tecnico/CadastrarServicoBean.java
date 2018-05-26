@@ -59,7 +59,7 @@ public class CadastrarServicoBean implements Serializable{
 		servicoCadastrar.setPreco(preco);
 		servicoCadastrar.setIdUsuario(usuarioLogado.getIdUsuario());
 		ServicosService.cadastrarServico(servicoCadastrar);
-	} 
+	}  
 	
 	public void redirecionarPaginaHomeTecnico() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
