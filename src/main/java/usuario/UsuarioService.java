@@ -51,7 +51,7 @@ public class UsuarioService {
 			Query query = em.createNamedQuery("SELECT u FROM Usuario U");
 			List<Usuario> usuarios = query.getResultList();
 
-			em.close();  
+			em.close(); 
 
 			return usuarios;
 			

@@ -9,7 +9,7 @@ Passos ->
 1 -> git clone https://github.com/Rmsilva1/iService/
 2 -> Maven build no projeto com os goals: Clean install
 3 -> Configurar JDK 1.8 no ECLIPSE ou IDE que estiver utilizando.
-4 -> Configurar arquivo "persistence.xml" para o hibernate apontar para a sua base 
+4 -> Configurar arquivo "persistance.xml" para o hibernate apontar para a sua base 
   -- Caminho do arquivo -> src/main/webapp/META-INF/persistence.xml
 5 ->
 
