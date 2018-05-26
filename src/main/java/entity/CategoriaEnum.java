@@ -31,7 +31,7 @@ public enum CategoriaEnum{
 	}
 	
 	public static Integer getIdByDescricao(String descricao){
-		for(CategoriaEnum categoria: CategoriaEnum.values()){
+  		for(CategoriaEnum categoria: CategoriaEnum.values()){
 			if(categoria.getDescricao().equals(descricao)){
 				return categoria.idCategoria;
 			}

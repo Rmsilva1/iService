@@ -48,7 +48,7 @@ public class Servico implements Serializable {
 
 	public Integer getIdUsuario() {
 		return idUsuario;
-	}
+	} 
 
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
