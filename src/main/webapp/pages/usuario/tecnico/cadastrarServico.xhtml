@@ -16,10 +16,10 @@
 				</h:head> 
 				<br /> <br />
 				<h:form>
-					<h:selectOneMenu id="console" style="width:125px" value="#{cadastrarServicoBean.categoriaSalvar}">
+					<p:selectOneMenu id="console" style="width:125px" value="#{cadastrarServicoBean.categoriaSalvar}" required="true">
 			            <f:selectItem itemLabel="Selecione Uma Categoria"/>
 			            <f:selectItems value="#{cadastrarServicoBean.descricaoCategorias}"/>
-        			</h:selectOneMenu>
+        			</p:selectOneMenu>
 					<div class="span4">
 						<p:outputLabel value="Descricao do Serviço: " />
 					</div>
@@ -33,7 +33,9 @@
 					<p:inputMask mask="999.99" id="preco" value="#{cadastrarServicoBean.preco}" required="true" />
 					<br />
 					<br />
-					<p:commandButton value="Voltar" action="#{cadastrarServicoBean.redirecionarPaginaHomeTecnico()}" />
+					<p:commandButton value="Voltar" action="#{cadastrarServicoBean.redirecionarPaginaHomeTecnico()}">
+						<f:ajax execute="@this"/>
+					</p:commandButton>
 					<p:commandButton value="Cadastrar" action="#{cadastrarServicoBean.cadastrarServico()}" />
 				</h:form>
 			</div>

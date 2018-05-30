@@ -1,0 +1,31 @@
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+	<ui:define name="head">
+		<title>iService</title>
+		<h:outputStylesheet name="css/starter-template.css" />
+	</ui:define>
+	<ui:define name="body">
+		<div class="container">
+			<div class="starter-template">
+				<br /> <br /> <br />
+				<h:head>
+					<p:outputLabel value="Lista de Servicos" />
+				</h:head>
+				<br />
+				<!-- TODO corrigir os dados da tabela e arrumar a query e model para trazer os dados corretos. -->
+				<h:form>
+					<p:dataTable value="#{meusServicosBean.listaServicos}" var="servicos">
+						<p:column value="#{servicos.fkCategoria}"/>
+						<p:column value="#{servicos.descricao}"/>
+						<p:column value="#{servicos.fkTecnico}"/>
+						<p:column value="#{servicos.isAtivo}"/>
+						<p:column value="#{servicos.preco}"/>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:decorate>

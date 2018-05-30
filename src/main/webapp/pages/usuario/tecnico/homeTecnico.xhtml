@@ -12,24 +12,28 @@
 			<div class="starter-template">
 				<br /> <br /> <br />
 				<h:head>
-					<p:outputLabel value="Bem vindo Tecnico #{homeTecnicoBean.usuarioLogado.nome}." />
+					<p:outputLabel value="Bem vindo Tecnico #{homeTecnicoBean.usuarioLogado.nome}." rendered="#{homeTecnicoBean.usuarioLogado.isTecnico == 1}" />
+					<p:outputLabel value="Bem vindo Usuario #{homeTecnicoBean.usuarioLogado.nome}." rendered="#{homeTecnicoBean.usuarioLogado.isTecnico == 0}" />
 				</h:head>
 				<br />
 				<h:form>
 					<div class="span4">
-						<p:commandButton value="Meus serviços" style="margin-top:2%" 
+						<p:commandButton value="Listar Todos os Servicos" style="margin-top:2%" 
 							action="#{homeTecnicoBean.redirecionarPaginaMeusServicos()}"/>
 						<br/>
-						<p:commandButton value="Cadastrar Um serviço" style="margin-top:2%" 
+						<p:commandButton value="Meus serviços" rendered="#{homeTecnicoBean.usuarioLogado.isTecnico == 1}" style="margin-top:2%" 
+							action="#{homeTecnicoBean.redirecionarPaginaMeusServicos()}"/>
+						<br/>
+						<p:commandButton value="Cadastrar Um serviço" rendered="#{homeTecnicoBean.usuarioLogado.isTecnico == 1}" style="margin-top:2%" 
 							action="#{homeTecnicoBean.redirecionarPaginaCadastrarServico()}"/>
 						<br/>
-						<p:commandButton value="Alterar Um serviço" style="margin-top:2%" 
+						<p:commandButton value="Alterar Um serviço" rendered="#{homeTecnicoBean.usuarioLogado.isTecnico == 1}" style="margin-top:2%" 
 							action="#{homeTecnicoBean.redirecionarPaginaAlterarServico()}"/>
 						<br/>
-						<p:commandButton value="Excluir Um serviço" style="margin-top:2%" 
+						<p:commandButton value="Excluir Um serviço" rendered="#{homeTecnicoBean.usuarioLogado.isTecnico == 1}" style="margin-top:2%" 
 							action="#{homeTecnicoBean.redirecionarPaginaExcluirServico()}"/>
 						<br/>
-						<p:commandButton value="Editar meu Usuario" style="margin-top:2%" 
+						<p:commandButton value="Editar meu Usuario"  style="margin-top:2%" 
 							action="#{homeTecnicoBean.redirecionarPaginaEditarMeuUsuario()}"/>
 						<br/>
 					</div>	

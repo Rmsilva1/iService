@@ -77,4 +77,8 @@ public class Servico implements Serializable {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+	
+	public String getDescricaoCategoriaEnum() {
+		return CategoriaEnum.getCategoriaById(this.idCategoria);
+	}
 }

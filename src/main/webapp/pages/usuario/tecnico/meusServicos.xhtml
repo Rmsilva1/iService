@@ -12,18 +12,25 @@
 			<div class="starter-template">
 				<br /> <br /> <br />
 				<h:head>
-					<p:outputLabel value="Lista de Servicos" />
+					<p:outputLabel value="Lista dos seus Servicos cadastrados" />
 				</h:head>
 				<br />
-				<!-- TODO corrigir os dados da tabela e arrumar a query e model para trazer os dados corretos. -->
 				<h:form>
-					<p:dataTable value="#{meusServicosBean.listaServicos}" var="servicos">
-						<p:column value="#{servicos.fkCategoria}"/>
-						<p:column value="#{servicos.descricao}"/>
-						<p:column value="#{servicos.fkTecnico}"/>
-						<p:column value="#{servicos.isAtivo}"/>
-						<p:column value="#{servicos.preco}"/>
+					<p:dataTable value="#{meusServicosBean.listaServicos}"
+						var="servicos">
+						<p:column headerText="Categoria">
+							<h:outputText value="#{servicos.descricaoCategoriaEnum}" />
+						</p:column>
+						<p:column headerText="Descrição">
+							<h:outputText value="#{servicos.descricao}" />
+						</p:column>
+						<p:column headerText="Preco">
+							<h:outputText value="#{servicos.preco}" />
+						</p:column>
 					</p:dataTable>
+					<br />
+					<p:commandButton value="Voltar" 
+						action="#{meusServicosBean.redirecionarPaginaHomeTecnico()}" />
 				</h:form>
 			</div>
 		</div>

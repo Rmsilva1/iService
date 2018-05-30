@@ -23,6 +23,7 @@ public class HomeTecnicoBean implements Serializable{
 	private String paginaPerfil = "/pages/usuario/tecnico/editarPerfil.jsf";
 	private String paginaMeusServicos = "/pages/usuario/tecnico/meusServicos.jsf";
 	private String paginaEditarMeuUsuario = "/pages/usuario/editarMeuUsuario.jsf";
+	private String paginaListarTodosServicos = "/pages/usuario/listarTodosServicos.jsf";
 	private Usuario usuarioLogado;
 
 	public HomeTecnicoBean() {}
@@ -33,6 +34,11 @@ public class HomeTecnicoBean implements Serializable{
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
 	}
 	
+	public void redirecionarPaginaListarTodosServicos() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaListarTodosServicos);
+	}
 	
 	public void redirecionarPaginaMeusServicos() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);

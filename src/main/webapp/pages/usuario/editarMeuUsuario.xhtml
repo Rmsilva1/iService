@@ -11,17 +11,17 @@
 		<div class="container">
 			<div style="margin-top:5%" class="starter-template">
 				<h:head>
-					<p:outputLabel value="Cadastrar usuario" />
+					<p:outputLabel value="Editar meu usuario" />
 				</h:head>
 				<br /> <br />
 				<h:form>
 					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-						<h:outputText value="Irá atuar como Tecnico?"/>
-<!-- 						<br/> -->
-<!-- 						<h:selectOneRadio id="selectOne" value="#{editarMeuUsuarioBean.usuario.isTecnico}"> -->
-<!-- 				            <f:selectItem itemLabel="Sim" itemValue="true" /> -->
-<!-- 				            <f:selectItem itemLabel="Não" itemValue="false" /> -->
-<!-- 				        </h:selectOneRadio> -->
+						<h:outputText value="Deseja atuar como tecnico?"/>
+						<br/>
+						<h:selectOneRadio id="selectOne" value="#{editarMeuUsuarioBean.usuario.isTecnico}">
+				            <f:selectItem itemLabel="Sim" itemValue="1" />
+				            <f:selectItem itemLabel="Não" itemValue="0" />
+				        </h:selectOneRadio>
 			        </h:panelGrid>
 					<div class="align: right">
 						<p:inputText placeholder="Nome" value="#{editarMeuUsuarioBean.usuario.nome}" required="true" />
