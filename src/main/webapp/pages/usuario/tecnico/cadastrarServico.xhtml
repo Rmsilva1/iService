@@ -33,9 +33,7 @@
 					<p:inputMask mask="999.99" id="preco" value="#{cadastrarServicoBean.preco}" required="true" />
 					<br />
 					<br />
-					<p:commandButton value="Voltar" action="#{cadastrarServicoBean.redirecionarPaginaHomeTecnico()}">
-						<f:ajax execute="@this"/>
-					</p:commandButton>
+					<p:commandButton value="Voltar" immediate="true" action="#{cadastrarServicoBean.redirecionarPaginaHomeTecnico()}"/>
 					<p:commandButton value="Cadastrar" action="#{cadastrarServicoBean.cadastrarServico()}" />
 				</h:form>
 			</div>
