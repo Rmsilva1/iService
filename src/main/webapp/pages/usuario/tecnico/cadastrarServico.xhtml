@@ -17,8 +17,8 @@
 				<br />
 				<h:form>
 					<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true"/>
-					<p:selectOneMenu id="console" style="width:125px" value="#{cadastrarServicoBean.categoriaSalvar}">
-			            <f:selectItem itemLabel="Selecione Uma Categoria"/>
+					<p:selectOneMenu id="console" value="#{cadastrarServicoBean.categoriaSalvar}">
+			            <f:selectItem itemLabel="Selecione Uma Categoria" itemValue=""/>
 			            <f:selectItems value="#{cadastrarServicoBean.descricaoCategorias}"/>
         			</p:selectOneMenu>
 					<div class="span4">

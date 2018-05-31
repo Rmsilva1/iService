@@ -33,7 +33,7 @@ public class MeusServicosBean implements Serializable {
 	public void init() throws Exception {
 		usuario = (Usuario) 
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
-		listaServicos = ServicosService.listarTodosServicos(usuario.getIdUsuario());
+		listaServicos = ServicosService.listarTodosServicosPorUsuario(usuario.getIdUsuario());
 	}
 
 	public List<Servico> getListaServicos() {

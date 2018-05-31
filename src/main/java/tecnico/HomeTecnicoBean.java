@@ -38,7 +38,7 @@ public class HomeTecnicoBean implements Serializable{
 		if(isLogin) {
 			FacesContext.getCurrentInstance().addMessage
 			(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem Vindo", usuarioLogado.getNome() + " !"));
-			isLogin = false;
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("KeyLogin", Boolean.FALSE);
 		}
 	}
 		

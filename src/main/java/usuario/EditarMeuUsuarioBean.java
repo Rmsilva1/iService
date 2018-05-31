@@ -35,8 +35,7 @@ public class EditarMeuUsuarioBean implements Serializable{
 	
 	@PostConstruct
 	public void init() {
-		usuario = (Usuario) 
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
+		usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
 //		this.usuario = usuarioService.consultarUsuarioPorId();
 	}
 	

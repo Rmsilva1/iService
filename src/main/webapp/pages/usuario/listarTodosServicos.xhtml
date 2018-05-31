@@ -8,22 +8,71 @@
 		<h:outputStylesheet name="css/starter-template.css" />
 	</ui:define>
 	<ui:define name="body">
+		<style>
+			.ui-column-filter {
+			display: none !important;
+			}
+		</style>
 		<div class="container">
 			<div class="starter-template">
 				<br /> <br /> <br />
 				<h:head>
-					<p:outputLabel value="Lista de Servicos" />
+					<p:outputLabel
+						value="Lista de todos os Servicos cadastrados no Sistema" />
 				</h:head>
 				<br />
-				<!-- TODO corrigir os dados da tabela e arrumar a query e model para trazer os dados corretos. -->
 				<h:form>
-					<p:dataTable value="#{meusServicosBean.listaServicos}" var="servicos">
-						<p:column value="#{servicos.fkCategoria}"/>
-						<p:column value="#{servicos.descricao}"/>
-						<p:column value="#{servicos.fkTecnico}"/>
-						<p:column value="#{servicos.isAtivo}"/>
-						<p:column value="#{servicos.preco}"/>
+					<p:dataTable filterEvent="enter"
+						value="#{listarTodosServicosBean.servicos}" var="servicos"
+						widgetVar="tabelaServicos" rows="15" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+						
+						<f:facet name="header">
+							<div align="right">
+								<h:outputText value="Buscar:" />
+								<p:inputText id="globalFilter"
+									onkeyup="PF('tabelaServicos').filter()" style="width:150px"
+									placeholder="Pesquisar" />
+							</div>
+						</f:facet>
+	
+						<p:column sortBy="#{servicos.tecnico.nome}"
+							filterBy="#{servicos.tecnico.nome}" headerText="Nome do Tecnico">
+							<h:outputText value="#{servicos.tecnico.nome}" />
+						</p:column>
+
+						<p:column sortBy="#{servicos.tecnico.cidade}"
+							filterBy="#{servicos.tecnico.cidade}" headerText="Cidade">
+							<h:outputText value="#{servicos.tecnico.cidade}" />
+						</p:column>
+
+						<p:column sortBy="#{servicos.tecnico.bairro}"
+							filterBy="#{servicos.tecnico.bairro}" headerText="Bairro">
+							<h:outputText value="#{servicos.tecnico.bairro}" />
+						</p:column>
+
+						<p:column sortBy="#{servicos.descricaoCategoriaEnum}"
+							filterBy="#{servicos.descricaoCategoriaEnum}"
+							headerText="Categoria">
+							<h:outputText value="#{servicos.descricaoCategoriaEnum}" />
+						</p:column>
+
+						<p:column sortBy="#{servicos.descricao}"
+							filterBy="#{servicos.descricao}" headerText="Descrição curta">
+							<h:outputText value="#{servicos.descricao}" />
+						</p:column>
+
+						<p:column sortBy="#{servicos.preco}" filterBy="#{servicos.preco}"
+							headerText="Preco">
+							<h:outputText style="float:right" value="#{servicos.preco}">
+								<f:convertNumber pattern="¤#,##0.00" currencySymbol="R$" />
+							</h:outputText>
+						</p:column>
 					</p:dataTable>
+					<br />
+					<p:commandButton value="Voltar"
+						action="#{meusServicosBean.redirecionarPaginaHomeTecnico()}" />
 				</h:form>
 			</div>
 		</div>

@@ -53,7 +53,7 @@ public class CadastrarServicoBean implements Serializable{
 	public void validaCadastrarServico() throws Exception {
 		Boolean sucessoValidacao = true;
 		
-		if(categoriaSalvar.equals(null) || categoriaSalvar.trim().isEmpty()) {
+		if(categoriaSalvar == null || categoriaSalvar == null) {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "É necessario escolher uma categoria!"));
 			sucessoValidacao = false;
@@ -83,7 +83,7 @@ public class CadastrarServicoBean implements Serializable{
 		servicoCadastrar.setDescricao(descricao);
 		servicoCadastrar.setIdCategoria(categoriaEntity.getIdCategoria());
 		servicoCadastrar.setPreco(preco);
-		servicoCadastrar.setIdUsuario(usuarioLogado.getIdUsuario());
+		servicoCadastrar.setTecnico(usuarioLogado);	
 		
 		if(ServicosService.cadastrarServico(servicoCadastrar)) {
 			FacesContext.getCurrentInstance().addMessage

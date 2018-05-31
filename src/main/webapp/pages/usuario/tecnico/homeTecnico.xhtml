@@ -20,7 +20,7 @@
  					<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true"/>
 					<div class="span4">
 						<p:commandButton value="Listar Todos os Servicos" style="margin-top:2%" 
-							action="#{homeTecnicoBean.redirecionarPaginaMeusServicos()}"/>
+							action="#{homeTecnicoBean.redirecionarPaginaListarTodosServicos()}"/>
 						<br/>
 						<p:commandButton value="Meus serviços" rendered="#{homeTecnicoBean.usuarioLogado.isTecnico == 1}" style="margin-top:2%" 
 							action="#{homeTecnicoBean.redirecionarPaginaMeusServicos()}"/>

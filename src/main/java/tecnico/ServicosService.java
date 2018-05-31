@@ -47,7 +47,32 @@ public class ServicosService implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public static List<Servico> listarTodosServicos(Integer idUsuario) throws Exception{
+	public static List<Servico> listarTodosServicos() throws Exception{
+		try {
+			
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+			em.getTransaction().begin();
+			
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("SELECT s FROM Servico s inner join s.tecnico");
+			Query query = em.createQuery(sql.toString());
+			
+			List<Servico> listaServicos = query.getResultList();
+			em.close();
+
+			return listaServicos;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public static List<Servico> listarTodosServicosPorUsuario(Integer idUsuario) throws Exception{
 		try {
 			
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");

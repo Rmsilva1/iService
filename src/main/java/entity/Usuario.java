@@ -32,7 +32,6 @@ public class Usuario implements Serializable {
 //	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Integer idUsuario;
 	
-	@Id
 	@Column(name = "permissionLevel", nullable = false)
 	private Integer permissionLevel;
 

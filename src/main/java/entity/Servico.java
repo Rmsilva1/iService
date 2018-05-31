@@ -2,9 +2,12 @@ package entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,8 +27,9 @@ public class Servico implements Serializable {
 	@Column(name = "ID_SERVICO", unique = true, nullable = false)
 	private Integer idServico;
 	
-	@Column(name = "ID_TECNICO", unique = true, nullable = false)
-	private Integer idUsuario;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="ID_TECNICO")
+	private Usuario tecnico;
 	
 	@Column(name = "ID_CATEGORIA", unique = true, nullable = false)
 	private Integer idCategoria;
@@ -44,14 +48,6 @@ public class Servico implements Serializable {
 
 	public void setIdServico(Integer idServico) {
 		this.idServico = idServico;
-	}
-
-	public Integer getIdUsuario() {
-		return idUsuario;
-	} 
-
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
 	}
 
 	public Integer getIdCategoria() {
@@ -80,5 +76,13 @@ public class Servico implements Serializable {
 	
 	public String getDescricaoCategoriaEnum() {
 		return CategoriaEnum.getCategoriaById(this.idCategoria);
+	}
+
+	public Usuario getTecnico() {
+		return tecnico;
+	}
+
+	public void setTecnico(Usuario tecnico) {
+		this.tecnico = tecnico;
 	}
 }
