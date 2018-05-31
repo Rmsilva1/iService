@@ -42,7 +42,6 @@ public class CadastroUsuarioBean implements Serializable{
 	private String complemento;
 	private Boolean flagHabilitaModal;
 
-	
 	public CadastroUsuarioBean() {}
 
 	@PostConstruct
@@ -52,19 +51,24 @@ public class CadastroUsuarioBean implements Serializable{
 	}
 	
 	public void validarCadastro() throws Exception {
-		if(senha.equals(senhaConfirma)) {
-			cadastrar();
-		}else {
-			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "As senhas devem ser iguais."));
+		if(validarCamposObrigatorios()) {
+			if(!senha.equals(senhaConfirma)) {
+				FacesContext.getCurrentInstance().addMessage(null, 
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "As senhas devem ser iguais."));
+				return;
+			}else {
+				cadastrar();
+			}
 		}
 	}
-
+	
 	public void cadastrar() throws Exception {
 		Usuario usuarioPersistir = montarUsuario();
-		if(usuarioService.cadastrarUsuario(usuarioPersistir));
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioPersistir);
-			redirecionarPaginaHomeTecnico();
+		if(usuarioService.cadastrarUsuario(usuarioPersistir))
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "SUCESSO", "Cadastrado com sucesso!"));
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioPersistir);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("KeyLogin", Boolean.TRUE);
+		redirecionarPaginaHomeTecnico();
 	}
 	
 	public Usuario montarUsuario() throws Exception {
@@ -84,6 +88,65 @@ public class CadastroUsuarioBean implements Serializable{
 		usuario.setRua(rua);
 		usuario.setComplemento(complemento);
 		return usuario;
+	}
+	
+	public Boolean validarCamposObrigatorios() {
+		Boolean sucessoValidacao = true;
+		if(senha == null || senha.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Senha é obrigatoria!"));
+			sucessoValidacao = false;
+		}
+		
+		if(nome == null || nome.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Nome é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(cpf == null || cpf.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "CPF é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(email == null || email.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Email é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(telefone == null || telefone.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Telefone é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(cep == null || cep.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "CEP é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(estado == null || estado.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Estado é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(cidade == null || cidade.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Cidade é obrigatoria!"));
+			sucessoValidacao = false;
+		}
+		
+		if(bairro == null || bairro.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Bairro é obrigatorio!"));
+			sucessoValidacao = false;
+
+		}
+		return sucessoValidacao;
 	}
 	
 	public void abrirModal() { 

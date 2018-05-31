@@ -14,27 +14,28 @@
 				<h:head>
 					<p:outputLabel value="Cadastrar Servico" />
 				</h:head> 
-				<br /> <br />
+				<br />
 				<h:form>
-					<p:selectOneMenu id="console" style="width:125px" value="#{cadastrarServicoBean.categoriaSalvar}" required="true">
+					<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true"/>
+					<p:selectOneMenu id="console" style="width:125px" value="#{cadastrarServicoBean.categoriaSalvar}">
 			            <f:selectItem itemLabel="Selecione Uma Categoria"/>
 			            <f:selectItems value="#{cadastrarServicoBean.descricaoCategorias}"/>
         			</p:selectOneMenu>
 					<div class="span4">
-						<p:outputLabel value="Descricao do Serviço: " />
+						<p:outputLabel styleClass="required" value="Descricao do Serviço: " />
 					</div>
 					<div class="align: right">
-						<p:inputText value="#{cadastrarServicoBean.descricao}" required="true" />
+						<p:inputText value="#{cadastrarServicoBean.descricao}" />
 					</div>
 					<br />	
 					<div class="span4">
-						<p:outputLabel value="Preco: " />
+						<p:outputLabel styleClass="required" value="Preco: " />
 					</div>
-					<p:inputMask mask="999.99" id="preco" value="#{cadastrarServicoBean.preco}" required="true" />
+					<p:inputMask mask="999.99" id="preco" value="#{cadastrarServicoBean.preco}" />
 					<br />
 					<br />
 					<p:commandButton value="Voltar" immediate="true" action="#{cadastrarServicoBean.redirecionarPaginaHomeTecnico()}"/>
-					<p:commandButton value="Cadastrar" action="#{cadastrarServicoBean.cadastrarServico()}" />
+					<p:commandButton value="Cadastrar" ajax="false" action="#{cadastrarServicoBean.validaCadastrarServico()}" />
 				</h:form>
 			</div>
 		</div>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -25,15 +26,22 @@ public class HomeTecnicoBean implements Serializable{
 	private String paginaEditarMeuUsuario = "/pages/usuario/editarMeuUsuario.jsf";
 	private String paginaListarTodosServicos = "/pages/usuario/listarTodosServicos.jsf";
 	private Usuario usuarioLogado;
+	private Boolean isLogin;
 
 	public HomeTecnicoBean() {}
 	
 	@PostConstruct
 	public void init() {
-		usuarioLogado = (Usuario) 
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
+		usuarioLogado = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("keyUsuario");
+		isLogin = (Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("KeyLogin");
+		
+		if(isLogin) {
+			FacesContext.getCurrentInstance().addMessage
+			(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem Vindo", usuarioLogado.getNome() + " !"));
+			isLogin = false;
+		}
 	}
-	
+		
 	public void redirecionarPaginaListarTodosServicos() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

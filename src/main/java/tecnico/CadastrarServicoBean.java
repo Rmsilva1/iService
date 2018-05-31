@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -48,6 +49,31 @@ public class CadastrarServicoBean implements Serializable{
 			descricaoCategorias.add(categoria.getCategeoriaById(categoria.getIdCategoria()));
 		}
 	}
+	
+	public void validaCadastrarServico() throws Exception {
+		Boolean sucessoValidacao = true;
+		
+		if(categoriaSalvar.equals(null) || categoriaSalvar.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "É necessario escolher uma categoria!"));
+			sucessoValidacao = false;
+		}
+		
+		if(preco == null) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Preço é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(descricao.equals(null) || descricao.trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Descrição do servico é obrigatoria!"));
+			sucessoValidacao = false;
+		}
+		
+		if(sucessoValidacao)
+			cadastrarServico();
+	}
 
 	public void cadastrarServico() throws Exception{
 		Categoria categoriaEntity = new Categoria(CategoriaEnum.getIdByDescricao(categoriaSalvar), descricao);
@@ -58,8 +84,19 @@ public class CadastrarServicoBean implements Serializable{
 		servicoCadastrar.setIdCategoria(categoriaEntity.getIdCategoria());
 		servicoCadastrar.setPreco(preco);
 		servicoCadastrar.setIdUsuario(usuarioLogado.getIdUsuario());
-		ServicosService.cadastrarServico(servicoCadastrar);
-	} 
+		
+		if(ServicosService.cadastrarServico(servicoCadastrar)) {
+			FacesContext.getCurrentInstance().addMessage
+				(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "SUCESSO", "O Servico  " + descricao +" foi cadastrado com sucesso!"));
+			limpaCampos();
+		}
+	}
+	
+	public void limpaCampos() {
+		categoriaSalvar = null;
+		preco = null;
+		descricao = null;
+	}
 	
 	public void redirecionarPaginaHomeTecnico() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();

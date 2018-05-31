@@ -15,6 +15,7 @@
 				</h:head>
 				<br /> <br />
 				<h:form>
+					<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true"/>
 					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 						<h:outputText value="Deseja atuar como tecnico?"/>
 						<br/>
@@ -24,40 +25,40 @@
 				        </h:selectOneRadio>
 			        </h:panelGrid>
 					<div class="align: right">
-						<p:inputText placeholder="Nome" value="#{editarMeuUsuarioBean.usuario.nome}" required="true" />
+						<p:inputText placeholder="Nome" value="#{editarMeuUsuarioBean.usuario.nome}" />
 					</div>
 					<br />
 					<div class="align: righ">
 						<p:inputMask id="cpf" placeholder="CPF" mask="999.999.999-99" 
-							size="20" value="#{editarMeuUsuarioBean.usuario.cpf}" required="true"/>
+							size="20" value="#{editarMeuUsuarioBean.usuario.cpf}"/>
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Email" value="#{editarMeuUsuarioBean.usuario.email}" required="true" />
+						<p:inputText placeholder="Email" value="#{editarMeuUsuarioBean.usuario.email}"/>
 					</div>
 					<br />
 			
 					<div class="align: right">
-						<p:inputMask placeholder="Telefone" mask="(99)99999-9999" value="#{editarMeuUsuarioBean.usuario.telefone}"  required="true" converterMessage="Somente Numeros." />
+						<p:inputMask placeholder="Telefone" mask="(99)99999-9999" value="#{editarMeuUsuarioBean.usuario.telefone}" converterMessage="Somente Numeros." />
 					</div>
 					<br/>
 					<div class="align: right">
-						<p:inputMask id="cep" mask="99999-999" placeholder="CEP" size="20" value="#{editarMeuUsuarioBean.usuario.cep}" required="true" />
+						<p:inputMask id="cep" mask="99999-999" placeholder="CEP" size="20" value="#{editarMeuUsuarioBean.usuario.cep}" />
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Estado" value="#{editarMeuUsuarioBean.usuario.estado}" required="true" />
+						<p:inputText placeholder="Estado" value="#{editarMeuUsuarioBean.usuario.estado}"/>
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Cidade" value="#{editarMeuUsuarioBean.usuario.cidade}" required="true" />
+						<p:inputText placeholder="Cidade" value="#{editarMeuUsuarioBean.usuario.cidade}"/>
 					</div>
 					<br/>
 					<div class="align: right">
-						<p:inputText placeholder="Bairro" value="#{editarMeuUsuarioBean.usuario.bairro}" required="true" />
+						<p:inputText placeholder="Bairro" value="#{editarMeuUsuarioBean.usuario.bairro}"/>
 					</div>
 					<br />
-					<p:commandButton value="Voltar" action="#{editarMeuUsuarioBean.redirecionarPaginaHomeTecnico()}" />
+					<p:commandButton value="Voltar" immediate="true" action="#{editarMeuUsuarioBean.redirecionarPaginaHomeTecnico()}" />
 					<p:commandButton value="Salvar" action="#{editarMeuUsuarioBean.salvarEdicaoUsuario()}"/>
 					<p:commandButton value="Excluir" action="#{editarMeuUsuarioBean.excluirMeuUsuario()}"/>
 				</h:form>

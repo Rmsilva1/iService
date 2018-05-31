@@ -19,51 +19,62 @@
 					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 						<h:outputText value="Irá atuar como Tecnico?"/>
 						<br/>
-						<h:selectOneRadio id="selectOne" value="#{cadastroUsuarioBean.isTecnico}" required="true" requiredMessage="Campo Tecnico é Obrigatorio!" label="Campo Tecnico">
+						<h:selectOneRadio id="selectOne" value="#{cadastroUsuarioBean.isTecnico}"  requiredMessage="Campo Tecnico é Obrigatorio!" label="Campo Tecnico">
 				            <f:selectItem itemLabel="Sim" itemValue="true" />
 				            <f:selectItem itemLabel="Não" itemValue="false" />
 				        </h:selectOneRadio>
 			        </h:panelGrid>
 			        
 					<div class="align: right">
-						<p:inputText placeholder="Nome" value="#{cadastroUsuarioBean.nome}" required="true" requiredMessage="Campo Nome é Obrigatorio!" label="Nome"/>
+						<p:inputText styleClass="required" placeholder="Nome" value="#{cadastroUsuarioBean.nome}"  requiredMessage="Campo Nome é Obrigatorio!" label="Nome"/>
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br />
 					<div class="align: righ">
 						<p:inputMask id="cpf" placeholder="CPF" mask="999.999.999-99" 
-							size="20" value="#{cadastroUsuarioBean.cpf}" required="true" label="Cpf" requiredMessage="CPF é Obrigatorio!"/>
+							size="20" value="#{cadastroUsuarioBean.cpf}"  label="Cpf" requiredMessage="CPF é Obrigatorio!"/>
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Email" value="#{cadastroUsuarioBean.email}" required="true" requiredMessage="Email é Obrigatorio!"  label="Email" />
+						<p:inputText placeholder="Email" value="#{cadastroUsuarioBean.email}"  requiredMessage="Email é Obrigatorio!"  label="Email" />
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br />
 					<p:password placeholder="Senha" id="pwd1" value="#{cadastroUsuarioBean.senha}"
-						label="Senha" required="true" requiredMessage="Senha é Obrigatorio!" />
+						label="Senha"  requiredMessage="Senha é Obrigatorio!" />
+					<p:outputLabel styleClass="required" style="margin-left: 7px"/>
+						
 					<br />
 					<div>
 						<p:password style="margin-top: 2%" placeholder="ConfirmaSenha" id="pwd2" value="#{cadastroUsuarioBean.senhaConfirma}"
 							label="Senha 2" />
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>							
 					</div>
 					<br/>
 					<div class="align: right">
-						<p:inputMask placeholder="Telefone" mask="(99)99999-9999" value="#{cadastroUsuarioBean.telefone}"  required="true" converterMessage="Somente Numeros."  label="Telefone"/>
+						<p:inputMask placeholder="Telefone" mask="(99)99999-9999" value="#{cadastroUsuarioBean.telefone}"   converterMessage="Somente Numeros."  label="Telefone"/>
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br/>
 					<div class="align: right">
-						<p:inputMask id="cep" mask="99999-999" placeholder="CEP" size="20" value="#{cadastroUsuarioBean.cep}" required="true" requiredMessage="CEP é Obrigatorio!" label="CEP"/>
+						<p:inputMask id="cep" mask="99999-999" placeholder="CEP" size="20" value="#{cadastroUsuarioBean.cep}"  requiredMessage="CEP é Obrigatorio!" label="CEP"/>
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Estado" value="#{cadastroUsuarioBean.estado}" required="true" label="Estado" requiredMessage="Estado é Obrigatorio!"/>
+						<p:inputText placeholder="Estado" value="#{cadastroUsuarioBean.estado}"  label="Estado" requiredMessage="Estado é Obrigatorio!"/>
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br />
 					<div class="align: right">
-						<p:inputText placeholder="Cidade" value="#{cadastroUsuarioBean.cidade}" required="true" label="Cidade" requiredMessage="Cidade é Obrigatorio!" />
+						<p:inputText placeholder="Cidade" value="#{cadastroUsuarioBean.cidade}"  label="Cidade" requiredMessage="Cidade é Obrigatorio!" />
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br/>
 					<div class="align: right">
-						<p:inputText placeholder="Bairro" value="#{cadastroUsuarioBean.bairro}" required="true" label="Bairro" requiredMessage="Bairro é Obrigatorio!" />
+						<p:inputText placeholder="Bairro" value="#{cadastroUsuarioBean.bairro}"  label="Bairro" requiredMessage="Bairro é Obrigatorio!" />
+						<p:outputLabel styleClass="required" style="margin-left: 7px"/>
 					</div>
 					<br />
 					<p:commandButton value="Voltar" immediate="true" action="#{cadastroUsuarioBean.redirecionarIndex()}"/>

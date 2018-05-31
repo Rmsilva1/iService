@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -39,8 +40,63 @@ public class EditarMeuUsuarioBean implements Serializable{
 //		this.usuario = usuarioService.consultarUsuarioPorId();
 	}
 	
-	public void salvarEdicaoUsuario() throws Exception {	
-		UsuarioService.editarUsuarioCompleto(usuario);
+	public void salvarEdicaoUsuario() throws Exception {
+		if(validarCamposObrigatorios())
+			UsuarioService.editarUsuarioCompleto(usuario);
+	}
+	
+	public Boolean validarCamposObrigatorios() {
+		Boolean sucessoValidacao = true;
+		
+		if(usuario.getNome() == null || usuario.getNome().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Nome é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(usuario.getCpf() == null || usuario.getCpf().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "CPF é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Email é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(usuario.getTelefone() == null || usuario.getTelefone().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Telefone é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(usuario.getCep() == null || usuario.getCep().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "CEP é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(usuario.getEstado() == null || usuario.getEstado().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Estado é obrigatorio!"));
+			sucessoValidacao = false;
+		}
+		
+		if(usuario.getCidade() == null || usuario.getCidade().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Cidade é obrigatoria!"));
+			sucessoValidacao = false;
+		}
+		
+		if(usuario.getBairro() == null || usuario.getBairro().trim().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Bairro é obrigatorio!"));
+			sucessoValidacao = false;
+
+		}
+		return sucessoValidacao;
 	}
 	
 	public void redirecionarPaginaHomeTecnico() throws IOException{
