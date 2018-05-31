@@ -83,7 +83,7 @@ public class CadastrarServicoBean implements Serializable{
 		servicoCadastrar.setDescricao(descricao);
 		servicoCadastrar.setIdCategoria(categoriaEntity.getIdCategoria());
 		servicoCadastrar.setPreco(preco);
-		servicoCadastrar.setTecnico(usuarioLogado);	
+		servicoCadastrar.setIdTecnico(usuarioLogado.getIdUsuario());	
 		
 		if(ServicosService.cadastrarServico(servicoCadastrar)) {
 			FacesContext.getCurrentInstance().addMessage

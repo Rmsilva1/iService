@@ -36,7 +36,6 @@ public class ServicosService implements Serializable {
 			em.persist(servico);
 			em.getTransaction().commit();
 			em.close();
-
 			return true;
 			 
 		}catch(Exception e) {

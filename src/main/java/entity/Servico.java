@@ -27,8 +27,11 @@ public class Servico implements Serializable {
 	@Column(name = "ID_SERVICO", unique = true, nullable = false)
 	private Integer idServico;
 	
+	@Column(name = "ID_TECNICO", unique = true, nullable = false)
+	private Integer idTecnico;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="ID_TECNICO")
+	@JoinColumn(name="ID_TECNICO", insertable=false, updatable=false)
 	private Usuario tecnico;
 	
 	@Column(name = "ID_CATEGORIA", unique = true, nullable = false)
@@ -84,5 +87,13 @@ public class Servico implements Serializable {
 
 	public void setTecnico(Usuario tecnico) {
 		this.tecnico = tecnico;
+	}
+
+	public Integer getIdTecnico() {
+		return idTecnico;
+	}
+
+	public void setIdTecnico(Integer idTecnico) {
+		this.idTecnico = idTecnico;
 	}
 }
