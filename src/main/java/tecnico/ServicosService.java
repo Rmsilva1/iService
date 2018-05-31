@@ -80,7 +80,7 @@ public class ServicosService implements Serializable {
 			
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("SELECT s FROM Servico s WHERE idUsuario =:idUsuario");
+			sql.append("SELECT s FROM Servico s WHERE idTecnico =:idUsuario");
 			Query query = em.createQuery(sql.toString());
 			
 			query.setParameter("idUsuario", idUsuario);
