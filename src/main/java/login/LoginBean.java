@@ -2,10 +2,16 @@ package login;
 
 import java.io.Serializable;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
 /**
  * @author Rafael Mateus
  * 5 de mai de 2018
  */
+
+@ViewScoped
+@ManagedBean(name="loginBean")
 public class LoginBean implements Serializable {
 	
 	private static final long serialVersionUID = 1094801825228386363L;

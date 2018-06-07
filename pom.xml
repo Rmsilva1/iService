@@ -63,6 +63,25 @@
     	<artifactId>omnifaces</artifactId>
     	<version>2.3</version>
 	</dependency>
+<!--     spring-boot -->
+<!-- 	<dependency> -->
+<!-- 	    <groupId>org.springframework.boot</groupId> -->
+<!-- 	    <artifactId>spring-boot-starter-test</artifactId> -->
+<!-- 	    <version>2.0.1.RELEASE</version> -->
+<!-- 	    <scope>test</scope> -->
+<!-- 	</dependency> -->
+<!--     <dependency> -->
+<!-- 	    <groupId>org.springframework.boot</groupId> -->
+<!-- 	    <artifactId>spring-boot-starter-security</artifactId> -->
+<!-- 	    <version>2.0.1.RELEASE</version> -->
+<!-- 	</dependency> -->
+<!--     joinfaces -->
+<!--     <dependency> -->
+<!-- 	    <groupId>org.joinfaces</groupId> -->
+<!-- 	    <artifactId>joinfaces-parent</artifactId> -->
+<!-- 	    <version>3.2.1</version> -->
+<!-- 	    <type>pom</type> -->
+<!-- 	</dependency> -->
   </dependencies>
   <build>
     <finalName>iService</finalName>
@@ -76,6 +95,11 @@
 				<target>1.7</target>
 			</configuration>
 		</plugin>
+		 <!-- spring-boot-maven-plugin -->
+<!--       <plugin> -->
+<!--         <groupId>org.springframework.boot</groupId> -->
+<!--         <artifactId>spring-boot-maven-plugin</artifactId> -->
+<!--       </plugin> -->
 	</plugins>
   </build>
 </project>
