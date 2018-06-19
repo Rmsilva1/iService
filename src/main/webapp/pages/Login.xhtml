@@ -10,22 +10,24 @@
 	<ui:define name="body">
 		<div class="container">
 			<div style="margin-top:5%" class="starter-template">
+			<br />
 				<h:head>
 					<p:outputLabel value="Cadastrar usuario" />
 				</h:head>
 				<br />
-				<h:form prependId="false">
+				<h:form>
+					<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true"/>
 					<p:outputLabel value="Login failed!" styleClass="red" rendered="${!empty param['error']}" />
 				
 					<div class="align: right">
 						<p:inputText id="username" placeholder="Email" value="#{loginBean.email}" required="true" />
 					</div>
 					<br />
-					<p:password id="password" placeholder="Senha" id="pwd1" value="#{loginBean.senha}"
+					<p:password id="password" placeholder="Senha" value="#{loginBean.senha}"
 						label="Senha" required="true" />
 					<br />
 					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.redirecionarIndex()}" />
-					<p:commandButton value="Logar" ajax="false" style="margin-left: 2%" action="#{loginBean}"/>	
+					<p:commandButton value="Logar" ajax="false" style="margin-left: 2%" action="#{loginBean.autenticarLogin()}"/>	
 				</h:form>
 			</div>
 		</div>

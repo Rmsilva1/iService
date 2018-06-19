@@ -87,7 +87,7 @@ public class UsuarioService {
 		}
 	}
 	
-	public  Usuario consultarUsuarioPorId(Integer id) throws Exception{
+	public Usuario consultarUsuarioPorId(Integer id) throws Exception{
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
 			EntityManager em = entityManagerFactory.createEntityManager();
@@ -101,6 +101,25 @@ public class UsuarioService {
 			return usuario;
 		}catch(Exception e) {
 			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Usuario autenticaUsuario(String email, String senha) throws Exception{
+		try{
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.iservice.jpa");
+			EntityManager em = entityManagerFactory.createEntityManager();
+			
+			em.getTransaction().begin();
+			
+			Query query = em.createQuery("SELECT u FROM Usuario u where email =: email AND senha =: senha");
+			query.setParameter("email", email);
+			query.setParameter("senha", senha);
+
+			Usuario usuario = (Usuario) query.getSingleResult();
+			em.close();
+			return usuario;
+		}catch (Exception e){
 			return null;
 		}
 	}
