@@ -17,14 +17,12 @@
 				<br />
 				<h:form>
 					<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true"/>
-					<p:outputLabel value="Login failed!" styleClass="red" rendered="${!empty param['error']}" />
 				
 					<div class="align: right">
 						<p:inputText id="username" placeholder="Email" value="#{loginBean.email}" required="true" />
 					</div>
 					<br />
-					<p:password id="password" placeholder="Senha" value="#{loginBean.senha}"
-						label="Senha" required="true" />
+					<p:password id="password" placeholder="Senha" value="#{loginBean.senha}" label="Senha" required="true" />
 					<br />
 					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.redirecionarIndex()}" />
 					<p:commandButton value="Logar" ajax="false" style="margin-left: 2%" action="#{loginBean.autenticarLogin()}"/>	

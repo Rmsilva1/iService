@@ -32,19 +32,19 @@ public class LoginBean implements Serializable {
 	
 	public LoginBean() { }
 	
-	public Usuario autenticarLogin() throws Exception {
+	public void autenticarLogin() throws Exception {
 		usuarioService = new UsuarioService();
 		usuarioLogado = usuarioService.autenticaUsuario(email, CryptoUtils.convertStringToMd5(senha));
 		
 		if(usuarioLogado != null) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "SUCESSO", "Seja Bem vindo " + usuarioLogado.getNome() + " !"));
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("KeyLogin", Boolean.TRUE);
 			redirecionarPaginaHomeTecnico();
 		}else {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Login ou senha invalidos!."));
 		}
-		return null;
 	}
 	
 	public void redirecionarPaginaHomeTecnico() throws IOException {

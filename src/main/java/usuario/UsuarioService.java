@@ -112,7 +112,7 @@ public class UsuarioService {
 			
 			em.getTransaction().begin();
 			
-			Query query = em.createQuery("SELECT u FROM Usuario u where email =: email AND senha =: senha");
+			Query query = em.createQuery("SELECT u FROM Usuario u where email =:email AND senha =:senha");
 			query.setParameter("email", email);
 			query.setParameter("senha", senha);
 
