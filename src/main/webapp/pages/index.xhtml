@@ -18,11 +18,15 @@
 					<p:row>
 						<h:form>
 							<p:commandButton value="Cliente"
-								action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}" />
+								action="#{homeBean.redirecionarPaginaCadastro()}" />
 							<p:commandButton style="margin-left: 10px" value="Tecnico"
-								action="#{cadastroUsuarioBean.redirecionarPaginaCadastro()}">
+								action="#{homeBean.redirecionarPaginaCadastro()}">
 								<f:setPropertyActionListener target="#{cadastroUsuarioBean.isTecnico}" value="#{true}" />
 							</p:commandButton>
+							<br/>
+							<br/>
+							<p:commandButton value="Logar"
+								action="#{homeBean.redirecionarPaginaLogin()}" />
 						</h:form>
 					</p:row>
 				</p:panelGrid>

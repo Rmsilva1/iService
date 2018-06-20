@@ -24,7 +24,7 @@
 					<br />
 					<p:password id="password" placeholder="Senha" value="#{loginBean.senha}" label="Senha" required="true" />
 					<br />
-					<p:commandButton value="Voltar" action="#{cadastroUsuarioBean.redirecionarIndex()}" />
+					<p:commandButton value="Voltar" action="#{loginBean.redirecionarIndex()}" />
 					<p:commandButton value="Logar" ajax="false" style="margin-left: 2%" action="#{loginBean.autenticarLogin()}"/>	
 				</h:form>
 			</div>

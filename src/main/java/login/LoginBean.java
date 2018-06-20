@@ -27,15 +27,16 @@ public class LoginBean implements Serializable {
 	private String senha;
 	private UsuarioService usuarioService;
 	private Usuario usuarioLogado;
-	
+
 	private String paginaHomeTecnico = "/iService/pages/usuario/tecnico/homeTecnico.jsf";
+	private String paginaIndex = "/pages/index.jsf";
+
 	
 	public LoginBean() { }
 	
 	public void autenticarLogin() throws Exception {
 		usuarioService = new UsuarioService();
 		usuarioLogado = usuarioService.autenticaUsuario(email, CryptoUtils.convertStringToMd5(senha));
-		
 		if(usuarioLogado != null) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "SUCESSO", "Seja Bem vindo " + usuarioLogado.getNome() + " !"));
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
@@ -45,6 +46,11 @@ public class LoginBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Login ou senha invalidos!."));
 		}
+	}
+	
+	public void redirecionarPaginaIndex() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().redirect(paginaIndex);
 	}
 	
 	public void redirecionarPaginaHomeTecnico() throws IOException {

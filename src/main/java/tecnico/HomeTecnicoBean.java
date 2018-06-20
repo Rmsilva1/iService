@@ -25,6 +25,7 @@ public class HomeTecnicoBean implements Serializable{
 	private String paginaMeusServicos = "/pages/usuario/tecnico/meusServicos.jsf";
 	private String paginaEditarMeuUsuario = "/pages/usuario/editarMeuUsuario.jsf";
 	private String paginaListarTodosServicos = "/pages/usuario/listarTodosServicos.jsf";
+	private String paginaIndex = "/pages/index.jsf";
 	private Usuario usuarioLogado;
 	private Boolean isLogin;
 
@@ -40,6 +41,17 @@ public class HomeTecnicoBean implements Serializable{
 			(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem Vindo", usuarioLogado.getNome() + " !"));
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("KeyLogin", Boolean.FALSE);
 		}
+	}
+	
+	public void deslogar() throws Exception{
+		usuarioLogado = null;
+		redirecionarPaginaIndex();
+	}
+	
+	public void redirecionarPaginaIndex() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("keyUsuario", usuarioLogado);
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.redirect(context.getRequestContextPath() + paginaIndex);
 	}
 		
 	public void redirecionarPaginaListarTodosServicos() throws IOException{
